@@ -1,0 +1,52 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:,">
+    <title>{{ title }}</title>
+    <!-- Bootstrap -->
+    <link href="{% static 'librery/bootstrap-5.3.0/css/bootstrap.min.css' %}" rel="stylesheet">
+    <script src="{% static 'librery/bootstrap-5.3.0/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'librery/bootstrap-5.3.0/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'librery/bootstrap-5.3.0/js/popper.min.js' %}"></script>
+    <!-- ./Bootstrap -->
+    <!-- AdminLTE3 -->
+{#    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">#}
+    <link rel="stylesheet" href="{% static 'librery/AdminLTE-3.2.0/plugins/fontawesome-free/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'librery/AdminLTE-3.2.0/dist/css/adminlte.min.css' %}">
+    <script src="{% static 'librery/AdminLTE-3.2.0/plugins/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'librery/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'librery/AdminLTE-3.2.0/dist/js/adminlte.min.js' %}"></script>
+    <!-- ./AdminLTE3 -->
+    <!-- Fontawesome -->
+    {#    <script src="https://kit.fontawesome.com/606bbbad74.js" crossorigin="anonymous"></script>#}
+    <link href="{% static 'librery/fontawesome-free-6.4.0/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'librery/fontawesome-free-6.4.0/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'librery/fontawesome-free-6.4.0/css/solid.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'librery/fontawesome-free-6.4.0/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <script src="{% static 'librery/fontawesome-free-6.4.0/js/fontawesome.js' %}"></script>
+    <script src="{% static 'librery/fontawesome-free-6.4.0/js/solid.js' %}"></script>
+    <script src="{% static 'librery/fontawesome-free-6.4.0/js/brands.js' %}"></script>
+    <script src="{% static 'librery/fontawesome-free-6.4.0/js/all.min.js' %}"></script>
+    <!-- ./Fontawesome -->
+    <!-- Font Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <!-- ./Font Google -->
+    <!-- Extra Libreries -->
+    {% block headExtra %}
+
+    {% endblock %}
+    <!-- ./Extra Libreries -->
+</head>
+
+<!-- Body -->
+{% block body %}
+
+{% endblock %}
+<!-- ./Body -->
+
+</html>

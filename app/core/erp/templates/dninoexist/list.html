@@ -1,0 +1,37 @@
+{% extends 'list.html' %}
+{% load static %}
+{% block headList %}
+    {#    <script src="{% static 'category/js/list.js' %}"></script>#}
+{% endblock %}
+
+{% block columns %}
+    <tr>
+        <th scope="col">Acción</th>
+        <th scope="col">N° Distrito</th>
+        <th scope="col">N° Circuito</th>
+        <th scope="col">N° Mesa</th>
+        <th scope="col">N° Orden</th>
+        <th scope="col">DNI</th>
+        <th scope="col">Apellidos</th>
+        <th scope="col">Nombres</th>
+    </tr>
+{% endblock %}
+
+{% block rows %}
+    {% for i in object_list %}
+        <tr>
+            <td>
+                <button type="button" class="btn btn-warning btn-xs btn-flat" style="FONT-SIZE: 10pt">
+                    <i class="fa-solid fa-file-pen"></i>
+                </button>
+            </td>
+            <td>{{ i.num_distrito }}</td>
+            <td>{{ i.num_circuito }}</td>
+            <td>{{ i.num_mesa }}</td>
+            <td>{{ i.num_orden }}</td>
+            <td>{{ i.dni }}</td>
+            <td>{{ i.apellido }}</td>
+            <td>{{ i.nombre }}</td>
+        </tr>
+    {% endfor %}
+{% endblock %}
