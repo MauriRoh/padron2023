@@ -78,6 +78,21 @@ class PadronForm(ModelForm):
             ),
         }
 
+    def save(self, commit=True):
+        data = {}
+        form = super()
+        try:
+            if form.is_valid():
+                instance = form.save()
+                data = instance.toJSON()
+            else:
+                data['ERROR'] = form.errors
+                data['ERROR'] = 'No se pudo realizar la solicitud'
+        except Exception as e:
+            data['Error'] = str(e)
+        return data
+
+
 class DniNoExistForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -133,3 +148,18 @@ class DniNoExistForm(ModelForm):
                 }
             ),
         }
+
+    def save(self, commit=True):
+        data = {}
+        form = super()
+        try:
+            if form.is_valid():
+                form.save()
+                # instance = form.save()
+                # data = instance.toJSON()
+            else:
+                data['ERROR'] = form.errors
+                data['ERROR'] = 'No se pudo realizar la solicitud'
+        except Exception as e:
+            data['Error'] = str(e)
+        return data

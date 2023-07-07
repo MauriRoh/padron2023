@@ -7,67 +7,96 @@
 <!-- Data Body -->
 {% block dataBody %}
     <!-- Card Header -->
-    <form method="POST" action="." id="limpiarForm">
-    <div class="card-header">
-        <h3 class="card-title">
-            {% if action == 'create' %}
-                <i class="fa-solid fa-plus"></i>
-            {% else %}
-                <i class="fa-solid fa-rotate"></i>
-            {% endif %}
-            {{ title }}
-        </h3>
-        <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                <i class="fas fa-minus"></i>
-            </button>
+    <form method="POST" action="." id="FormCreate">
+        <div class="card-header">
+            <h3 class="card-title">
+                {% if action == 'create' %}
+                    <i class="fa-solid fa-plus"></i>
+                {% else %}
+                    <i class="fa-solid fa-rotate"></i>
+                {% endif %}
+                {{ title }}
+            </h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+            </div>
         </div>
-    </div>
-    <!-- ./Card Header -->
-    <!-- Card Body -->
-    <div class="card-body">
+        <!-- ./Card Header -->
+        <!-- Card Body -->
+        <div class="card-body">
             {% csrf_token %}
-    {% if form.errors %}
-        <div class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h5><i class="fa-solid fa-triangle-exclamation"></i> !!! Ha ocurrido un ERROR. El DNI ya Existe !!!</h5>
-{#            <ul>#}
-{#                {% for field in form %}#}
-{#                    {% for error in form %}#}
-{#                        <li>{{ error }}</li>#}
-{#                    {% endfor %}#}
-{#                {% endfor %}#}
-{#            </ul>#}
-        </div>
-    {% endif %}
+            <input type="hidden" name="action" value="{{ action }}">
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="fa-solid fa-triangle-exclamation"></i> !!! Ha ocurrido un ERROR. El DNI ya Existe !!!
+                    </h5>
+                    {#            <ul>#}
+                    {#                {% for field in form %}#}
+                    {#                    {% for error in form %}#}
+                    {#                        <li>{{ error }}</li>#}
+                    {#                    {% endfor %}#}
+                    {#                {% endfor %}#}
+                    {#            </ul>#}
+                </div>
+            {% endif %}
             {% for field in form.visible_fields %}
                 <label for="name">{{ field.label }}</label>
                 {{ field|add_class:'form-control' }}
             {% endfor %}
-    </div>
-    <!-- ./Card Body -->
-    <!-- Card Footer-Buttons -->
-    <div class="card-footer text-center">
-        {% if action == 'create' %}
-            <a href="#" type="submit" class="btn btn-primary" id="upDates">
-                <i class="fa-solid fa-plus"></i> Crear
+        </div>
+        <!-- ./Card Body -->
+        <!-- Card Footer-Buttons -->
+        <div class="card-footer text-center">
+            {% if action == 'create' %}
+                <button type="submit" class="btn btn-primary" id="send">
+                    <i class="fa-solid fa-plus"></i> Crear
+                </button>
+                <button type="button" onclick="limpiarForm()" class="btn btn-warning"><i
+                        class="fa-solid fa-recycle ml-1"></i> Limpar
+                </button>
+            {% else %}
+                <button type="submit" class="btn btn-primary" id="upDates">
+                    <i class="fa-solid fa-rotate"></i> Actualizar
+                </button>
+            {% endif %}
+            <a href="{{ cancel_url }}" class="btn btn-danger">
+                <i class="fa-solid fa-xmark"></i> Cancelar
             </a>
-        {% else %}
-            <a href="#" class="btn btn-primary" id="upDates">
-                <i class="fa-solid fa-rotate"></i> Actualizar
-            </a>
-        {% endif %}
-        <a href="{{ cancel_url }}" class="btn btn-danger">
-            <i class="fa-solid fa-xmark"></i> Cancelar
-        </a>
-    </div>
-    <!-- ./Card Footer-Buttons -->
+        </div>
+        <!-- ./Card Footer-Buttons -->
     </form>
 
     <script>
-    function limpiarForm() {
-            document.getElementById("limpiarForm2").reset();
+        function limpiarForm() {
+            document.getElementById("FormCreate").reset();
         }
+
+        $('form').on('submit', function (e) {
+            e.preventDefault();
+            let dataForm =  $(this).serializeArray();
+            $.ajax({
+                url: window.location.pathname,
+                type: 'POST',
+                data: dataForm,
+                datatype: 'json'
+            }).done(function (data) {
+                if(!data.hasOwnProperty('error')){
+                    location.href = '{{ list_url }}';
+                    return false;
+                }
+                message_error(data.error);
+            }).fail(function (jqXHR, textStatus, errorThrawn) {
+                alert(textStatus + ' - ' + errorThrawn);
+            }).always(function (data) {
+
+            });
+        });
+
     </script>
+
+
 {% endblock %}
 <!-- ./Data Body -->

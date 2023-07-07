@@ -10,6 +10,7 @@ urlpatterns = [
 
     # DNI no Existen
     path('dninoexist/list/',DniNoExistListView.as_view(), name='dninoexist_list'),
-    path('dninoexist/create/',DniNoExistCreateView.as_view(), name='dninoexist_create')
-
+    path('dninoexist/create/',DniNoExistCreateView.as_view(), name='dninoexist_create'),
+    path('dninoexist/update/<int:pk>',DniNoExistUpdateView.as_view(), name='dninoexist_update'),
+    path('dninoexist/delete/<int:pk>',DniNoExistDeleteView.as_view(), name='dninoexist_delete'),
 ]

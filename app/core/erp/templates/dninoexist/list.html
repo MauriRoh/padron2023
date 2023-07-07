@@ -21,9 +21,9 @@
     {% for i in object_list %}
         <tr>
             <td>
-                <button type="button" class="btn btn-warning btn-xs btn-flat" style="FONT-SIZE: 10pt">
-                    <i class="fa-solid fa-file-pen"></i>
-                </button>
+                <a href="{% url 'app:dninoexist_update' i.id %}" class="btn btn-warning btn-xs btn-flat" style="FONT-SIZE: 10pt">
+                    <i class="fa-regular fa-address-card"></i>
+                </a>
             </td>
             <td>{{ i.num_distrito }}</td>
             <td>{{ i.num_circuito }}</td>

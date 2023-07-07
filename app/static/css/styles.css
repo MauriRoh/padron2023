@@ -1,0 +1,44 @@
+:root {
+    /* ESTRUCTURAS */
+    --green01: #98EECC;
+    --green02: #45CFDD;
+    --structure_yellow: #F2D338;
+    --structure_blue1: #0476D9;
+    --structure_blue2: #0476D9;
+    --structure_blue3: #16B4F3;
+    /* Botones de Aceptar | Guardar | actualizar*/
+    --structure_blue4: #248EA6;
+    --structurec_black: #000000;
+    --structure_white: #F5F5F5;
+    --structure_white2: #FCFCFC;
+    --structure_red: #F23030;
+    --search_product_stock: #F2D338;
+    --search_product_price: #F2622E;
+    /* Gris color de objeto bloqueado  */
+    --structure_gray: #EBEBEB;
+
+    /* PROCESOS */
+    /* 1° Color íconos  */
+    --color_iconos_1_8: #248EA6;
+    /* 2° Color íconos  */
+    --color_iconos_2_7: #F2D338;
+    /* 3° Color íconos  */
+    --color_iconos_3: #F2622E;
+    /* 4° Color íconos  */
+    --color_iconos_4: #25C7D9;
+    /* 1° Color estructura  */
+    --color_estructura_1: #16B4F3;
+    /* 1° Color estructura  */
+    --color_estructura_2: #0476D9;
+
+}
+/***********************************************
+                    FUENTES
+***********************************************/
+* {
+    font-family: 'Ubuntu', sans-serif;
+    margin: 0;
+    /*Es una propiedad CSS para cambiar el modelo de caja por defecto de los navegadores.*/
+    /*El ancho de un elemento se altera si se le aplica un borde o un padding.*/
+    box-sizing: border-box;
+}

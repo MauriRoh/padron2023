@@ -47,5 +47,5 @@ class DniNoExist(models.Model):
 
     class Meta:
         db_table = 'dninoexist'
-        ordering = ['num_distrito']
+        ordering = ['id']
 
