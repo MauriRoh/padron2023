@@ -19,7 +19,7 @@
 <!-- ./Extra Librerys -->
 
 <!-- Data Body -->
-{% block dataBody %}
+{% block data_body %}
     <!-- Card Header -->
     <div class="card-header">
         <h3 class="card-title"><i class="fa-solid fa-list-ul"></i> {{ title }}</h3>
@@ -30,7 +30,7 @@
         </div>
     </div>
     <!-- ./Card Header -->
-    <!-- Card Body -->
+    <!-- Table -->
     <div class="card-body">
         <table class="table" id="data">
             <thead>
@@ -45,18 +45,15 @@
             </tbody>
         </table>
     </div>
-    <!-- ./Card Body -->
-    <!-- Card Footer-Buttons -->
-    <div class="card-footer text-center">
-        <a href="{{ create_url }}" style="background-color:var(--blue02); FONT-SIZE: 9pt"
-           class="btn text-white btn-rounded"><i class="fa-solid fa-plus"></i> Crear</a>
-        <a href="{{ list_url }}" style="background-color:var(--green05); FONT-SIZE: 9pt"
-           class="btn text-white btn-rounded"><i class="fa-solid fa-rotate-right"></i> Actualizar</a>
-    </div>
-    <!-- ./Card Footer-Buttons -->
+    <!-- ./Table -->
+    <!-- Footer-Buttons -->
+    {% block footer_buttons %}
+
+    {% endblock %}
+    <!-- ./Footer-Buttons -->
+
 {% endblock %}
 <!-- ./Data Body -->
-
 <!-- JavaScript -->
 {% block javascript %}
     <script type="application/javascript">

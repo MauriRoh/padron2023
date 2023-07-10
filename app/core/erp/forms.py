@@ -4,13 +4,13 @@ from django.forms import ModelForm
 from core.erp.models import *
 
 
-class PadronForm(ModelForm):
+class PadronModelForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['dni'].widget.attrs['autofocus'] = True
-
         for form in self.visible_fields():
             form.field.widget.attrs['class'] = 'form-control'
+            form.field.widget.attrs['readonly'] = 'on'
 
     class Meta:
         model = Padron
@@ -87,17 +87,15 @@ class PadronForm(ModelForm):
                 data = instance.toJSON()
             else:
                 data['ERROR'] = form.errors
-                data['ERROR'] = 'No se pudo realizar la solicitud'
         except Exception as e:
-            data['Error'] = str(e)
+            data['ERROR'] = str(e)
         return data
 
 
-class DniNoExistForm(ModelForm):
+class DniNoExistModelForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['num_distrito'].widget.attrs['autofocus'] = True
-
         for form in self.visible_fields():
             form.field.widget.attrs['class'] = 'form-control'
 
@@ -154,12 +152,10 @@ class DniNoExistForm(ModelForm):
         form = super()
         try:
             if form.is_valid():
-                form.save()
-                # instance = form.save()
-                # data = instance.toJSON()
+                instance = form.save()
+                data = instance.toJSON()
             else:
                 data['ERROR'] = form.errors
-                data['ERROR'] = 'No se pudo realizar la solicitud'
         except Exception as e:
-            data['Error'] = str(e)
+            data['ERROR'] = str(e)
         return data

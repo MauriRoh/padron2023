@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from core.erp.models import DniNoExist
-from core.erp.forms import DniNoExistForm
+from core.erp.forms import DniNoExistModelForm
 
 
 class DniNoExistListView(ListView):
@@ -29,8 +29,6 @@ class DniNoExistListView(ListView):
                 data['ERROR'] = 'Ha ocurrido un Error. No se pudo realizar la solicitud'
         except Exception as e:
             data['ERROR'] = str(e)
-            print(e)
-            print(data)
         return JsonResponse(data, safe=False)
 
     def get_context_data(self, **kwargs):
@@ -44,7 +42,7 @@ class DniNoExistListView(ListView):
 
 class DniNoExistCreateView(CreateView):
     model = DniNoExist
-    form_class = DniNoExistForm
+    form_class = DniNoExistModelForm
     template_name = 'dninoexist/create.html'
     success_url = reverse_lazy('app:dninoexist_list')
 
@@ -61,7 +59,6 @@ class DniNoExistCreateView(CreateView):
                 data = form.save()
             else:
                 data['ERROR'] = 'No se pudo realizar la solicitud'
-            # data = DniNoExist.objects.get(pk=request.POST['id']).toJSON()
         except Exception as e:
             data['ERROR'] = str(e)
         return JsonResponse(data)
@@ -69,7 +66,6 @@ class DniNoExistCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Crear DNI No Encontrado'
-        context['cancel_url'] = reverse_lazy('app:dninoexist_list')
         context['padron_url'] = reverse_lazy('app:padron_list')
         context['dni_no_url'] = reverse_lazy('app:dninoexist_list')
         context['list_url'] = reverse_lazy('app:dninoexist_list')
@@ -79,7 +75,7 @@ class DniNoExistCreateView(CreateView):
 
 class DniNoExistUpdateView(UpdateView):
     model = DniNoExist
-    form_class = DniNoExistForm
+    form_class = DniNoExistModelForm
     template_name = 'dninoexist/create.html'
     success_url = reverse_lazy('app:dninoexist_list')
     url_redirect = success_url
@@ -104,8 +100,6 @@ class DniNoExistUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Editar DNI No Encontrado'
-        context['cancel_url'] = reverse_lazy('app:dninoexist_list')
         context['padron_url'] = reverse_lazy('app:padron_list')
         context['dni_no_url'] = reverse_lazy('app:dninoexist_list')
         context['action'] = 'update'
@@ -135,8 +129,8 @@ class DniNoExistDeleteView(DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Eliminar DNI No Encontrado'
-        context['cancel_url'] = reverse_lazy('app:dninoexist_list')
         context['padron_url'] = reverse_lazy('app:padron_list')
         context['dni_no_url'] = reverse_lazy('app:dninoexist_list')
+        context['action'] = 'delete'
         context['list_url'] = self.success_url
         return context

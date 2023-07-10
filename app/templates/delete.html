@@ -5,7 +5,7 @@
 {% load widget_tweaks %}
 
 <!-- Data Body -->
-{% block dataBody %}
+{% block data_body %}
     <!-- Card Header -->
     <form method="POST" action="." enctype="multipart/form-data">
 
@@ -26,7 +26,7 @@
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                     <h5><i class="fa-solid fa-triangle-exclamation"></i>
-                        ¡Ha ocurrido un ERROR al intentar eliminar un registro!
+                        ¡Ha ocurrido un ERROR al intentar Eliminar el registro!
                     </h5>
 {#                    <ul>#}
 {#                        {% for field in form %}#}
@@ -39,14 +39,14 @@
             {% endif %}
             <div class="alert text-white" style="background-color:var(--red02);">
                 <h5><strong><i class="fa-solid fa-triangle-exclamation"></i> Notificación!</strong></h5>
-                ¿Estás seguro de eliminar el registro <strong> #{{ object.id }} </strong>? Si confirma la eliminación, no podrá acceder nuevamente a este.
+                ¿Estás seguro de eliminar el DNI: <strong> {{ object.dni }} </strong>? Si confirma la eliminación, no podrá acceder nuevamente a este.
             </div>
         </div>
         <div class="card-footer text-center">
             <button type="submit" style="background-color:var(--red02); FONT-SIZE: 9pt" class="btn text-white btn-rounded">
                 <i class="fa-solid fa-trash-can sm-1"></i> Confirmar
             </button>
-            <a href="{{ cancel_url }}" style="background-color:var(--orange02); FONT-SIZE: 9pt" class="btn text-white btn-rounded">
+            <a href="{{ list_url }}" style="background-color:var(--red06); FONT-SIZE: 9pt" class="btn text-white btn-rounded">
                 <i class="fa-solid fa-xmark ml-1"></i> Cancelar
             </a>
         </div>

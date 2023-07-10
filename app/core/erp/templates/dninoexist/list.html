@@ -3,7 +3,7 @@
 {% load static %}
 <!-- Head List -->
 {% block head_List %}
-        <script src="{% static 'dninoexist/js/list.js' %}"></script>
+    <script src="{% static 'dninoexist/js/list.js' %}"></script>
 {% endblock %}
 <!-- ./Head List -->
 <!-- Table -->
@@ -23,6 +23,18 @@
 {% block rows %}
 
 {% endblock %}
+<!-- Footer-Buttons -->
+{% block footer_buttons %}
+    <div class="card-footer text-center">
+        <a href="{{ create_url }}" style="background-color:var(--blue02); FONT-SIZE: 9pt"
+           class="btn text-white btn-rounded"><i class="fa-solid fa-plus"></i> Crear</a>
+        <a href="{{ create_url }}" style="background-color:var(--green08); FONT-SIZE: 9pt"
+           class="btn text-white btn-rounded"><i class="fa-solid fa-list-check"></i> Votó</a>
+        <a href="{{ list_url }}" style="background-color:var(--green05); FONT-SIZE: 9pt"
+           class="btn text-white btn-rounded"><i class="fa-solid fa-rotate"></i> Actualizar</a>
+    </div>
+{% endblock %}
+<!-- ./Footer-Buttons -->
 <!-- ./Table -->
 <!-- JavaScript -->
 {% block javascript %}

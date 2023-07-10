@@ -5,17 +5,18 @@ from core.erp.models import *
 class PadronModelAdmin(admin.ModelAdmin):
     list_display = (
         'dni',
+        'tipo_dni',
         'apellido',
         'nombre',
         'sexo',
         'domicilio',
-        'tipo_dni',
         'departamento',
         'circuito',
         'nombre_circuito',
+        'voto',
     )
     # Buscador
-    search_fields = ('dni', 'apellido', 'nombre',)
+    search_fields = ('dni', 'apellido', 'nombre', 'departamento', 'circuito', 'nombre_circuito', 'voto',)
     ordering = ['dni']
 admin.site.register(Padron, PadronModelAdmin)
 

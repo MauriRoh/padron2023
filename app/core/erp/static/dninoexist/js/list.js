@@ -63,7 +63,7 @@ $(function () {
                 class: 'text-center',
                 orderable: false,
                 render: function (data, type, row) {
-                    let buttons = '<a href="/erp/dninoexist/update/' + row.id + '/" target="_blank" style="background-color:var(--orange01); FONT-SIZE: 12pt" class="badge text-white"><i class="fa-solid fa-pencil"></i></a>';
+                    let buttons = '<a href="/erp/dninoexist/update/' + row.id + '/" style="background-color:var(--orange01); FONT-SIZE: 12pt" class="badge text-white"><i class="fa-solid fa-pencil"></i></a>';
                     buttons += '<a href="/erp/dninoexist/delete/' + row.id + '/" style="background-color:var(--red01); FONT-SIZE: 12pt" class="badge text-white"><i class="fa-regular fa-trash-can"></i></a>';
                     return buttons;
                 }

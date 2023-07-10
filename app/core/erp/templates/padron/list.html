@@ -1,30 +1,44 @@
 {% extends 'list.html' %}
-{% load static %}
-{% block headList %}
-{#    <script src="{% static 'category/js/list.js' %}"></script>#}
-{% endblock %}
 
+{% load static %}
+<!-- Head List -->
+{% block head_List %}
+    <script src="{% static 'padron/js/list.js' %}"></script>
+{% endblock %}
+<!-- ./Head List -->
+<!-- Table -->
 {% block columns %}
     <tr>
-        <th scope="col" style="width: 10%;">Actualizar</th>
-        <th scope="col" style="width: 20%;">DNI</th>
-        <th scope="col" style="width: 50%;">Nombre</th>
-        <th scope="col" style="width: 20%;">Apellido</th>
+        <th scope="col">Acción</th>
+        <th scope="col">DNI</th>
+        <th scope="col">Tipo DNI</th>
+        <th scope="col">Apellidos</th>
+        <th scope="col">Nombres</th>
+        <th scope="col">Sexo</th>
+        <th scope="col">Domicilio</th>
+        <th scope="col">Departamento</th>
+        <th scope="col">Circuito</th>
+        <th scope="col">Nombre del Circuito</th>
+        <th scope="col">Voto</th>
     </tr>
 {% endblock %}
 
 {% block rows %}
-{#    {% for i in object_list %}#}
-{#        <tr>#}
-{#            <td>#}
-{#                <button type="button" class="btn btn-warning btn-xs btn-flat" style="FONT-SIZE: 10pt">#}
-{#                    <i class="fa-solid fa-file-pen"></i>#}
-{#                </button>#}
-{#            </td>#}
-{#            <td>{{ i.dni }}</td>#}
-{#            <td>{{ i.nombre }}</td>#}
-{#            <td>{{ i.apellido }}</td>#}
-{#        </tr>#}
-{#    {% endfor %}#}
-{% endblock %}
 
+{% endblock %}
+<!-- ./Table -->
+<!-- Footer-Buttons -->
+{% block footer_buttons %}
+    <div class="card-footer text-center">
+        <a href="{{ padron_update }}" style="background-color:var(--green08); FONT-SIZE: 9pt"
+           class="btn text-white btn-rounded"><i class="fa-solid fa-list-check"></i> Votó</a>
+        <a href="{{ list_url }}" style="background-color:var(--green05); FONT-SIZE: 9pt"
+           class="btn text-white btn-rounded"><i class="fa-solid fa-rotate"></i> Actualizar</a>
+    </div>
+{% endblock %}
+<!-- ./Footer-Buttons -->
+<!-- JavaScript -->
+{% block javascript %}
+
+{% endblock %}
+<!-- ./JavaScript -->

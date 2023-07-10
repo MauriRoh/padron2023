@@ -48,27 +48,27 @@ $(function () {
             // }
         },
         columns: [
-            // {"data": "id"},
+            {"data": "id"},
             {"data": "dni"},
+            {"data": "tipo_dni"},
             {"data": "apellido"},
             {"data": "nombre"},
             {"data": "sexo"},
             {"data": "domicilio"},
-            {"data": "tipo_dni"},
             {"data": "departamento"},
             {"data": "circuito"},
             {"data": "nombre_circuito"},
             {"data": "voto"},
         ],
         columnDefs: [
-            // {
-            //     targets: [-8],
-            //     class: 'text-center',
-            //     orderable: false,
-            //     render: function (data, type, row) {
-            //         return buttons = '<a href="/erp/padron/detail/' + row.id + '/" target="_blank" style="background-color:var(--orange01); FONT-SIZE: 12pt" class="badge text-white"><i class="fa-solid fa-pencil"></i></a>';
-            //     }
-            // },
+                {
+                targets: [-11],
+                class: 'text-center',
+                orderable: false,
+                render: function (data, type, row) {
+                    return buttons = '<a href="/erp/padron/update/' + row.id + '/" style="background-color:var(--orange01); FONT-SIZE: 12pt" class="badge text-white"><i class="fa-regular fa-address-card"></i></a>';
+                }
+            },
             {
                 targets: [-1, -2, -3, -4, -5, -6, -7, -8, -9, -10],
                 class: 'text-left',
