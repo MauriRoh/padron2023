@@ -1,36 +1,31 @@
 :root {
     /* ESTRUCTURAS */
-    --green01: #98EECC;
-    --green02: #45CFDD;
-    --structure_yellow: #F2D338;
-    --structure_blue1: #0476D9;
-    --structure_blue2: #0476D9;
-    --structure_blue3: #16B4F3;
-    /* Botones de Aceptar | Guardar | actualizar*/
-    --structure_blue4: #248EA6;
-    --structurec_black: #000000;
-    --structure_white: #F5F5F5;
-    --structure_white2: #FCFCFC;
-    --structure_red: #F23030;
-    --search_product_stock: #F2D338;
-    --search_product_price: #F2622E;
-    /* Gris color de objeto bloqueado  */
-    --structure_gray: #EBEBEB;
-
-    /* PROCESOS */
-    /* 1° Color íconos  */
-    --color_iconos_1_8: #248EA6;
-    /* 2° Color íconos  */
-    --color_iconos_2_7: #F2D338;
-    /* 3° Color íconos  */
-    --color_iconos_3: #F2622E;
-    /* 4° Color íconos  */
-    --color_iconos_4: #25C7D9;
-    /* 1° Color estructura  */
-    --color_estructura_1: #16B4F3;
-    /* 1° Color estructura  */
-    --color_estructura_2: #0476D9;
-
+    --blue01:#5BC0F8;
+    --blue02:#0081C9;
+    --blue03:#2C74B3;
+    --blue05:#205295;
+    --blue06:#144272;
+    --blue07:#3D56B2;
+    --blue08:#00649F;
+    --blue09:#007AB5;
+    --blue10:#005A85;
+    --blue11:#0E6AC7;
+    --green01:#9CD9DE;
+    --green02:#86C1D4;
+    --green03:#5A92AF;
+    --green04:#8EC3B0;
+    --green05:#4FC0D0;
+    --green06:#1B6B93;
+    --green07:#164B60;
+    --orange01:#F79540;
+    --orange02:#F79327;
+    --orange03:#FC4F00;
+    --red01:#D61C4E;
+    --red02:#B70404;
+    --red03:#B71375;
+    --red04:#9C2C77;
+    --red05:#8B1874;
+    --red06:#F23030;
 }
 /***********************************************
                     FUENTES

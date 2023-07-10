@@ -31,8 +31,7 @@
             {% if form.errors %}
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <h5><i class="fa-solid fa-triangle-exclamation"></i> !!! Ha ocurrido un ERROR. El DNI ya Existe !!!
-                    </h5>
+                    <h5><i class="fa-solid fa-triangle-exclamation"></i> ! Ha ocurrido un ERROR !</h5>
                     {#            <ul>#}
                     {#                {% for field in form %}#}
                     {#                    {% for error in form %}#}
@@ -76,14 +75,14 @@
 
         $('form').on('submit', function (e) {
             e.preventDefault();
-            let dataForm =  $(this).serializeArray();
+            let dataForm = $(this).serializeArray();
             $.ajax({
                 url: window.location.pathname,
                 type: 'POST',
                 data: dataForm,
                 datatype: 'json'
             }).done(function (data) {
-                if(!data.hasOwnProperty('error')){
+                if (!data.hasOwnProperty('error')) {
                     location.href = '{{ list_url }}';
                     return false;
                 }

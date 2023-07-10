@@ -1,8 +1,9 @@
-from django.http import JsonResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from django.urls import reverse_lazy
+from django.http import JsonResponse
+# from django.http import JsonResponse, HttpResponseRedirect
+from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from core.erp.models import DniNoExist
 from core.erp.forms import DniNoExistForm
@@ -15,19 +16,23 @@ class DniNoExistListView(ListView):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
+
     def post(self, request, *args, **kwargs):
         data = {}
         try:
             action = request.POST['action']
             if action == 'searchdata':
+                data = []
                 for i in DniNoExist.objects.all():
                     data.append(i.toJSON())
             else:
                 data['ERROR'] = 'Ha ocurrido un Error. No se pudo realizar la solicitud'
         except Exception as e:
             data['ERROR'] = str(e)
-            # data['ERROR'] = 'No se pudo realizar la solicitud'
+            print(e)
+            print(data)
         return JsonResponse(data, safe=False)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Listado DNI No Encontrado'
@@ -113,6 +118,19 @@ class DniNoExistDeleteView(DeleteView):
     template_name = 'dninoexist/delete.html'
     success_url = reverse_lazy('app:dninoexist_list')
     url_redirect = success_url
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        data = {}
+        try:
+            self.object.delete()
+        except Exception as e:
+            data['ERROR'] = str(e)
+        return JsonResponse(data)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

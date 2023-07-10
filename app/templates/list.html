@@ -9,6 +9,12 @@
     <script src="{% static 'librery/datatables-1.10.22/js/dataTables.bootstrap4.min.js' %}"></script>
     <script src="{% static 'librery/datatables-1.10.22/plugins/js/dataTables.responsive.min.js' %}"></script>
     <script src="{% static 'librery/datatables-1.10.22/plugins/js/responsive.bootstrap4.min.js' %}"></script>
+    <!-- Head List -->
+    {% block head_List %}
+
+    {% endblock %}
+    <!-- ./Head List -->
+
 {% endblock %}
 <!-- ./Extra Librerys -->
 
@@ -16,7 +22,7 @@
 {% block dataBody %}
     <!-- Card Header -->
     <div class="card-header">
-        <h3 class="card-title">{{ title }}</h3>
+        <h3 class="card-title"><i class="fa-solid fa-list-ul"></i> {{ title }}</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                 <i class="fas fa-minus"></i>
@@ -42,12 +48,10 @@
     <!-- ./Card Body -->
     <!-- Card Footer-Buttons -->
     <div class="card-footer text-center">
-        <a href="{{ create_url }}" class="btn btn-primary" id="upDates">
-            <i class="fa-solid fa-plus"></i> Crear
-        </a>
-        <a href="{{ list_url }}" class="btn btn-warning">
-            <i class="fa-solid fa-rotate-right"></i> Actualizar
-        </a>
+        <a href="{{ create_url }}" style="background-color:var(--blue02); FONT-SIZE: 9pt"
+           class="btn text-white btn-rounded"><i class="fa-solid fa-plus"></i> Crear</a>
+        <a href="{{ list_url }}" style="background-color:var(--green05); FONT-SIZE: 9pt"
+           class="btn text-white btn-rounded"><i class="fa-solid fa-rotate-right"></i> Actualizar</a>
     </div>
     <!-- ./Card Footer-Buttons -->
 {% endblock %}

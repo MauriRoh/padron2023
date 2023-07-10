@@ -1,0 +1,80 @@
+{% extends 'body.html' %}
+
+{% load static %}
+
+{% load widget_tweaks %}
+
+<!-- Data Body -->
+{% block dataBody %}
+    <!-- Card Header -->
+    <form method="POST" action="." enctype="multipart/form-data">
+
+{#        <div class="card navbar-dark text-white" style="background-color:#F24130;">#}
+        <div class="card card-danger card-outline">
+            <div class="card-header">
+                <h3 class="card-title" style="color:var(--red02);">
+{#                <h3 class="card-title">#}
+                    <i class="fas fa-solid fa-trash-can"></i>
+                    {{title}}
+                </h3>
+            </div>
+        </div>
+        <div class="card-body">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="{{ action }}">
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="fa-solid fa-triangle-exclamation"></i>
+                        ¡Ha ocurrido un ERROR al intentar eliminar un registro!
+                    </h5>
+{#                    <ul>#}
+{#                        {% for field in form %}#}
+{#                            {% for error in field.errors %}#}
+{#                                <li>{{ error }}</li>#}
+{#                            {% endfor %}#}
+{#                        {% endfor %}#}
+{#                    </ul>#}
+                </div>
+            {% endif %}
+            <div class="alert text-white" style="background-color:var(--red02);">
+                <h5><strong><i class="fa-solid fa-triangle-exclamation"></i> Notificación!</strong></h5>
+                ¿Estás seguro de eliminar el registro <strong> #{{ object.id }} </strong>? Si confirma la eliminación, no podrá acceder nuevamente a este.
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <button type="submit" style="background-color:var(--red02); FONT-SIZE: 9pt" class="btn text-white btn-rounded">
+                <i class="fa-solid fa-trash-can sm-1"></i> Confirmar
+            </button>
+            <a href="{{ cancel_url }}" style="background-color:var(--orange02); FONT-SIZE: 9pt" class="btn text-white btn-rounded">
+                <i class="fa-solid fa-xmark ml-1"></i> Cancelar
+            </a>
+        </div>
+    </form>
+
+    <script>
+        $('form').on('submit', function (e) {
+            e.preventDefault();
+            {#let dataForm = $(this).serializeArray();#}
+            $.ajax({
+                url: window.location.pathname,
+                type: 'POST',
+                data: [],
+                datatype: 'json'
+            }).done(function (data) {
+                if (!data.hasOwnProperty('error')) {
+                    location.href = '{{ list_url }}';
+                    return false;
+                }
+                message_error(data.error);
+            }).fail(function (jqXHR, textStatus, errorThrawn) {
+                alert(textStatus + ' - ' + errorThrawn);
+            }).always(function (data) {
+
+            });
+        });
+    </script>
+
+
+{% endblock %}
+<!-- ./Data Body -->

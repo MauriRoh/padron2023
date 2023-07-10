@@ -35,7 +35,7 @@ $(function () {
         destroy: true,
         deferRender: true,
         pageLength: 25,
-        order: [[ 1, 'asc' ]],
+        order: [[0, 'asc']],
         ajax: {
             url: window.location.pathname,
             type: 'POST',
@@ -43,9 +43,9 @@ $(function () {
                 'action': 'searchdata'
             },
             dataSrc: "",
-            headers: {
-                'X-CSRFToken': csrftoken
-            }
+            // headers: {
+            //     'X-CSRFToken': csrftoken
+            // }
         },
         columns: [
             {"data": "id"},
@@ -63,18 +63,20 @@ $(function () {
                 class: 'text-center',
                 orderable: false,
                 render: function (data, type, row) {
-                    return buttons = '<a href="/erp/dninoexist/update/' + row.id + '/" style="background-color:var(--green01); FONT-SIZE: 12pt" class="badge text-white"><i class="fa-solid fa-pen-clip"></i></a>';
+                    let buttons = '<a href="/erp/dninoexist/update/' + row.id + '/" target="_blank" style="background-color:var(--orange01); FONT-SIZE: 12pt" class="badge text-white"><i class="fa-solid fa-pencil"></i></a>';
+                    buttons += '<a href="/erp/dninoexist/delete/' + row.id + '/" style="background-color:var(--red01); FONT-SIZE: 12pt" class="badge text-white"><i class="fa-regular fa-trash-can"></i></a>';
+                    return buttons;
                 }
             },
             {
                 targets: [-1, -2, -3, -4, -5, -6, -7],
                 class: 'text-left',
             },
+
         ],
         initComplete: function (settings, json) {
 
         }
-
     });
 
 });

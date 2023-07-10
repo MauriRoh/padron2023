@@ -1,9 +1,12 @@
 {% extends 'list.html' %}
-{% load static %}
-{% block headList %}
-    {#    <script src="{% static 'category/js/list.js' %}"></script>#}
-{% endblock %}
 
+{% load static %}
+<!-- Head List -->
+{% block head_List %}
+        <script src="{% static 'dninoexist/js/list.js' %}"></script>
+{% endblock %}
+<!-- ./Head List -->
+<!-- Table -->
 {% block columns %}
     <tr>
         <th scope="col">Acción</th>
@@ -18,20 +21,11 @@
 {% endblock %}
 
 {% block rows %}
-    {% for i in object_list %}
-        <tr>
-            <td>
-                <a href="{% url 'app:dninoexist_update' i.id %}" class="btn btn-warning btn-xs btn-flat" style="FONT-SIZE: 10pt">
-                    <i class="fa-regular fa-address-card"></i>
-                </a>
-            </td>
-            <td>{{ i.num_distrito }}</td>
-            <td>{{ i.num_circuito }}</td>
-            <td>{{ i.num_mesa }}</td>
-            <td>{{ i.num_orden }}</td>
-            <td>{{ i.dni }}</td>
-            <td>{{ i.apellido }}</td>
-            <td>{{ i.nombre }}</td>
-        </tr>
-    {% endfor %}
+
 {% endblock %}
+<!-- ./Table -->
+<!-- JavaScript -->
+{% block javascript %}
+
+{% endblock %}
+<!-- ./JavaScript -->
