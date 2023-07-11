@@ -86,9 +86,9 @@ class PadronModelForm(ModelForm):
                 instance = form.save()
                 data = instance.toJSON()
             else:
-                data['ERROR'] = form.errors
+                data['error'] = form.errors
         except Exception as e:
-            data['ERROR'] = str(e)
+            data['error'] = str(e)
         return data
 
 
@@ -155,7 +155,7 @@ class DniNoExistModelForm(ModelForm):
                 instance = form.save()
                 data = instance.toJSON()
             else:
-                data['ERROR'] = form.errors
+                data['error'] = form.errors
         except Exception as e:
-            data['ERROR'] = str(e)
+            data['error'] = str(e)
         return data

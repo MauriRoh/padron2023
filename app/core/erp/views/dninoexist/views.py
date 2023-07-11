@@ -26,9 +26,9 @@ class DniNoExistListView(ListView):
                 for i in DniNoExist.objects.all():
                     data.append(i.toJSON())
             else:
-                data['ERROR'] = 'Ha ocurrido un Error. No se pudo realizar la solicitud'
+                data['error'] = 'Ha ocurrido un Error. No se pudo realizar la solicitud'
         except Exception as e:
-            data['ERROR'] = str(e)
+            data['error'] = str(e)
         return JsonResponse(data, safe=False)
 
     def get_context_data(self, **kwargs):
@@ -58,9 +58,9 @@ class DniNoExistCreateView(CreateView):
                 form = self.get_form()
                 data = form.save()
             else:
-                data['ERROR'] = 'No se pudo realizar la solicitud'
+                data['error'] = 'No se pudo realizar la solicitud'
         except Exception as e:
-            data['ERROR'] = str(e)
+            data['error'] = str(e)
         return JsonResponse(data)
 
     def get_context_data(self, **kwargs):
@@ -93,9 +93,9 @@ class DniNoExistUpdateView(UpdateView):
                 form = self.get_form()
                 data = form.save()
             else:
-                data['ERROR'] = 'No se pudo realizar la solicitud'
+                data['error'] = 'No se pudo realizar la solicitud'
         except Exception as e:
-            data['ERROR'] = str(e)
+            data['error'] = str(e)
         return JsonResponse(data)
 
     def get_context_data(self, **kwargs):
@@ -123,7 +123,7 @@ class DniNoExistDeleteView(DeleteView):
         try:
             self.object.delete()
         except Exception as e:
-            data['ERROR'] = str(e)
+            data['error'] = str(e)
         return JsonResponse(data)
 
     def get_context_data(self, **kwargs):

@@ -59,7 +59,7 @@
             $.ajax({
                 url: window.location.pathname,
                 type: 'POST',
-                data: [],
+                data: {},
                 datatype: 'json'
             }).done(function (data) {
                 if (!data.hasOwnProperty('error')) {

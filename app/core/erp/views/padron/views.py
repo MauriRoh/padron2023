@@ -25,9 +25,9 @@ class PadronListView(ListView):
                 for i in Padron.objects.all():
                     data.append(i.toJSON())
             else:
-                data['ERROR'] = 'Ha ocurrido un Error. No se pudo realizar la solicitud'
+                data['error'] = 'Ha ocurrido un Error. No se pudo realizar la solicitud'
         except Exception as e:
-            data['ERROR'] = str(e)
+            data['error'] = str(e)
             print(e)
             print(data)
         return JsonResponse(data, safe=False)
@@ -61,9 +61,9 @@ class PadronUpdateView(UpdateView):
                 form = self.get_form()
                 data = form.save()
             else:
-                data['ERROR'] = 'No se pudo realizar la solicitud'
+                data['error'] = 'No se pudo realizar la solicitud'
         except Exception as e:
-            data['ERROR'] = str(e)
+            data['error'] = str(e)
         return JsonResponse(data)
 
     def get_context_data(self, **kwargs):
