@@ -7,7 +7,7 @@
 <!-- Data Body -->
 {% block data_body %}
     <!-- Card Header -->
-    <form method="POST" action="." id="FormCreate">
+    <form method="POST" action="." id="FormCreate" enctype="multipart/form-data">
         <div class="card-header">
             <h3 class="card-title">
                 {% if action == 'create' %}
@@ -79,7 +79,7 @@
 
         $('form').on('submit', function (e) {
             e.preventDefault();
-            let dataForm = $(this).serializeArray();
+            let dataForm = new FormData(this);
             alert_confirm(window.location.pathname, dataForm, 'Confirmar', '¿Estás seguro de realizar la siguiente Acción?', function () {
                 location.href = '{{ list_url }}';
             });
@@ -89,21 +89,3 @@
 
 {% endblock %}
 <!-- ./Data Body -->
-
-
-{# $.ajax({#}
-{#        url: window.location.pathname,#}
-{#        type: 'POST',#}
-{#        data: dataForm,#}
-{#        datatype: 'json'#}
-{#    }).done(function (data) {#}
-{#        if (!data.hasOwnProperty('error')) {#}
-{#            location.href = '{{ list_url }}';#}
-{#            return false;#}
-{#        }#}
-{#        message_error(data.error);#}
-{#    }).fail(function (jqXHR, textStatus, errorThrawn) {#}
-{#        alert(textStatus + ' - ' + errorThrawn);#}
-{#    }).always(function (data) {#}
-{##}
-{#    });#}

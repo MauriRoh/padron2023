@@ -33,7 +33,12 @@ function alert_confirm(urls, dataForm, titles, message, callback) {
                         url: urls,
                         type: 'POST',
                         data: dataForm,
-                        datatype: 'json'
+                        datatype: 'json',
+                        processData: false,
+                        contentType: false,
+                        // headers: {
+                        //     'X-CSRFToken': csrftoken
+                        // }
                     }).done(function (data) {
                         if (!data.hasOwnProperty('error')) {
                             callback();

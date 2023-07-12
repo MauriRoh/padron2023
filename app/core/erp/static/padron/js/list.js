@@ -61,7 +61,7 @@ $(function () {
             {"data": "voto"},
         ],
         columnDefs: [
-                {
+            {
                 targets: [-11],
                 class: 'text-center',
                 orderable: false,
@@ -79,5 +79,6 @@ $(function () {
 
         }
     });
-
 });
+
+

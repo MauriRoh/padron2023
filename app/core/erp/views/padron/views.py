@@ -1,3 +1,5 @@
+import json
+import os
 from django.http import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
@@ -44,7 +46,7 @@ class PadronListView(ListView):
 class PadronUpdateView(UpdateView):
     model = Padron
     form_class = PadronModelForm
-    template_name = 'padron/create.html'
+    template_name = 'padron/update.html'
     success_url = reverse_lazy('app:padron_list')
     url_redirect = success_url
 
@@ -58,8 +60,12 @@ class PadronUpdateView(UpdateView):
         try:
             action = request.POST['action']
             if action == 'update':
-                form = self.get_form()
-                data = form.save()
+                dataproces = json.loads(request.POST['dataproces'])
+                votante = self.get_object()
+                votante.id = int(dataproces['id'])
+                for i in Padron.objects.filter(id=int(votante.id)):
+                    votante.voto = 0
+                    votante.save()
             else:
                 data['error'] = 'No se pudo realizar la solicitud'
         except Exception as e:
