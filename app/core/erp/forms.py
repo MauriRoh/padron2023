@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, Form
 
 from core.erp.models import *
 
@@ -10,7 +10,7 @@ class PadronModelForm(ModelForm):
         self.fields['dni'].widget.attrs['autofocus'] = True
         for form in self.visible_fields():
             form.field.widget.attrs['class'] = 'form-control'
-            form.field.widget.attrs['readonly'] = 'on'
+            # form.field.widget.attrs['readonly'] = 'on'
 
     class Meta:
         model = Padron
@@ -18,7 +18,7 @@ class PadronModelForm(ModelForm):
         widgets = {
             'dni': forms.TextInput(
                 attrs={
-                    'placeholder': 'DNI',
+                    'placeholder': 'Ingrese DNI',
                     'autocomplete': 'off',
                 }
             ),
@@ -90,6 +90,8 @@ class PadronModelForm(ModelForm):
         except Exception as e:
             data['error'] = str(e)
         return data
+
+
 
 
 class DniNoExistModelForm(ModelForm):

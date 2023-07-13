@@ -47,9 +47,9 @@ function alert_confirm(urls, dataForm, titles, message, callback) {
                         message_error(data.error);
                     }).fail(function (jqXHR, textStatus, errorThrawn) {
                         alert(textStatus + ': ' + errorThrawn);
-                        console.log(errorThrawn)
+                        // console.log(errorThrawn)
                     }).always(function (data) {
-                        console.log(data)
+                        // console.log(data)
                     });
                 }
             },

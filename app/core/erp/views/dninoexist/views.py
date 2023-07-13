@@ -38,6 +38,7 @@ class DniNoExistListView(ListView):
         context['list_url'] = reverse_lazy('app:dninoexist_list')
         context['padron_url'] = reverse_lazy('app:padron_list')
         context['dni_no_url'] = reverse_lazy('app:dninoexist_list')
+        context['padron_dni_update'] = reverse_lazy('app:padron_dniupdate')
         return context
 
 class DniNoExistCreateView(CreateView):
@@ -69,6 +70,7 @@ class DniNoExistCreateView(CreateView):
         context['padron_url'] = reverse_lazy('app:padron_list')
         context['dni_no_url'] = reverse_lazy('app:dninoexist_list')
         context['list_url'] = reverse_lazy('app:dninoexist_list')
+        context['padron_dni_update'] = reverse_lazy('app:padron_dniupdate')
         context['action'] = 'create'
         return context
 
@@ -102,6 +104,7 @@ class DniNoExistUpdateView(UpdateView):
         context = super().get_context_data(**kwargs)
         context['padron_url'] = reverse_lazy('app:padron_list')
         context['dni_no_url'] = reverse_lazy('app:dninoexist_list')
+        context['padron_dni_update'] = reverse_lazy('app:padron_dniupdate')
         context['action'] = 'update'
         context['list_url'] = self.success_url
         return context
@@ -131,6 +134,7 @@ class DniNoExistDeleteView(DeleteView):
         context['title'] = 'Eliminar DNI No Encontrado'
         context['padron_url'] = reverse_lazy('app:padron_list')
         context['dni_no_url'] = reverse_lazy('app:dninoexist_list')
+        context['padron_dni_update'] = reverse_lazy('app:padron_dniupdate')
         context['action'] = 'delete'
         context['list_url'] = self.success_url
         return context

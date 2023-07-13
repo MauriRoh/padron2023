@@ -40,6 +40,7 @@ class PadronListView(ListView):
         context['list_url'] = reverse_lazy('app:padron_list')
         context['padron_url'] = reverse_lazy('app:padron_list')
         context['dni_no_url'] = reverse_lazy('app:dninoexist_list')
+        context['padron_dni_update'] = reverse_lazy('app:padron_dniupdate')
         return context
 
 
@@ -77,6 +78,49 @@ class PadronUpdateView(UpdateView):
         context['title'] = 'Editar Voto'
         context['padron_url'] = reverse_lazy('app:padron_list')
         context['dni_no_url'] = reverse_lazy('app:dninoexist_list')
+        context['padron_dni_update'] = reverse_lazy('app:padron_dniupdate')
         context['action'] = 'update'
         context['list_url'] = self.success_url
         return context
+
+
+
+class PadronDNIUpdateView(CreateView):
+    model = Padron
+    form_class = PadronModelForm
+    template_name = 'padron/dniupdate.html'
+    success_url = reverse_lazy('app:padron_dniupdate')
+    url_redirect = success_url
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        # self.object = self.get_object()
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        data = {}
+        try:
+            action = request.POST['action']
+            if action == 'search_dni':
+                data = []
+                dni = Padron.objects.filter(dni__icontains=request.POST['term'])
+                for i in dni:
+                    item = i.toJSON()
+                    item['value'] = i.dni
+                    data.append(item)
+            else:
+                data['error'] = 'No se pudo realizar la solicitud'
+        except Exception as e:
+            data['error'] = str(e)
+        return JsonResponse(data, safe=False)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Editar Voto'
+        context['padron_url'] = reverse_lazy('app:padron_list')
+        context['dni_no_url'] = reverse_lazy('app:dninoexist_list')
+        context['padron_dni_update'] = reverse_lazy('app:padron_dniupdate')
+        context['action'] = 'search_dni'
+        context['list_url'] = self.success_url
+        return context
+

@@ -5,7 +5,7 @@
 {% load widget_tweaks %}
 
 <!-- Extra Head -->
-{% block headExtra %}
+{% block head_extra %}
     <script src="{% static 'padron/js/update.js' %}"></script>
 {% endblock %}
 <!-- ./Extra Head -->
@@ -47,15 +47,7 @@
                     </ul>
                 </div>
             {% endif %}
-{#            {% for field in form.visible_fields %}#}
-{#                <label for="name">{{ field.label }}</label>#}
-{#                {{ field|add_class:'form-control' }}#}
-{#            {% endfor %}#}
-
             <div hidden class="form-group">
-                {{ form.id }}
-            </div>
-            <div class="form-group">
                 {{ form.id }}
             </div>
             <div class="form-group">
@@ -107,20 +99,21 @@
         <!-- ./Card Footer-Buttons -->
     </form>
 
-    <script>
-        function limpiarForm() {
-            document.getElementById("FormCreate").reset();
-        }
-
-        $('form').on('submit', function (e) {
-            e.preventDefault();
-            let dataForm = new FormData(this);
-            alert_confirm(window.location.pathname, dataForm, 'Confirmar', '¿Estás seguro de realizar la siguiente Acción?', function () {
-                {#location.href = '{{ list_url }}';#}
-            });
-        });
-
-    </script>
-
 {% endblock %}
 <!-- ./Data Body -->
+
+
+{# <script>#}
+{#        function limpiarForm() {#}
+{#            document.getElementById("FormCreate").reset();#}
+{#        }#}
+{##}
+{#        $('#FormCreate').on('submit', function (e) {#}
+{#            e.preventDefault();#}
+{#            let dataForm = new FormData(this);#}
+{#            alert_confirm(window.location.pathname, dataForm, 'Confirmar', '¿Estás seguro de realizar la siguiente Acción 55555555555?', function () {#}
+{#                location.href = '{{ list_url }}';#}
+{#            });#}
+{#        });#}
+{##}
+{#    </script>#}

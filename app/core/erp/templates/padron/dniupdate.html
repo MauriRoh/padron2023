@@ -1,0 +1,194 @@
+{% extends 'body.html' %}
+
+{% load static %}
+
+{% load widget_tweaks %}
+
+<!-- Extra Head -->
+{% block head_extra %}
+    <!-- AutoComplete -->
+    <link href="{% static 'librery/jquery-ui-1.13.2/jquery-ui.min.css' %}" rel="stylesheet"/>
+    <script src="{% static 'librery/jquery-ui-1.13.2/jquery-ui.min.js' %}"></script>
+    <!-- ./AutoComplete -->
+    <!-- JavaScript extra -->
+    <script src="{% static 'padron/js/update.js' %}"></script>
+    <!-- JavaScript extra -->
+{% endblock %}
+<!-- ./Extra Head -->
+
+<!-- Data Body -->
+{% block data_body %}
+    <!-- Card Header -->
+    <form method="POST" action="." id="FormCreate" enctype="multipart/form-data">
+        <div class="card-header">
+            <h3 class="card-title">
+                <i class="fa-solid fa-rotate"></i> {{ title }}
+            </h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <!-- ./Card Header -->
+        <!-- Card Body -->
+        <div class="card-body">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="{{ action }}">
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="fa-solid fa-triangle-exclamation"></i> ! Ha ocurrido un ERROR !</h5>
+                    <ul>
+                        {% for field in form %}
+                            {% for error in form %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="input-group mb-3">
+                        {{ form.dni }}
+{#                        <input id="searchdni" type="text" class="form-control" placeholder="Ingrese DNI"#}
+{#                               aria-label="Ingrese DNI" aria-describedby="button-addon2">#}
+                        <button style="background-color:var(--green05); Font-size: 12px" class="btn text-white"
+                                type="submit" id="button-addon2"><i class="fa-solid fa-rotate"></i> Actualizar
+                        </button>
+                    </div>
+                    <div class="form-outline" style="display:none;">
+                        <input id="id" style="display:none;" type="number" class="form-control" aria-label="id"
+                               aria-describedby="addon-wrapping">
+                    </div>
+                </div>
+                <div class="col-lg-9"></div>
+            </div>
+
+            <hr>
+
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="form-outline">
+                        <label class="form-label" id="addon-wrapping">DNI</label>
+                        <input id="dni" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                               aria-describedby="addon-wrapping">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-outline">
+                        <label class="form-label" id="addon-wrapping">Apellido</label>
+                        <input id="apellido" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                               aria-describedby="addon-wrapping">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-outline">
+                        <label class="form-label" id="addon-wrapping">Nombre</label>
+                        <input id="nombre" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                               aria-describedby="addon-wrapping">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-outline">
+                        <label class="form-label" id="addon-wrapping">Sexo</label>
+                        <input id="sexo" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                               aria-describedby="addon-wrapping">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="form-outline">
+                        <span class="form-label" id="addon-wrapping">Domicilio</span>
+                        <input id="domicilio" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                               aria-describedby="addon-wrapping">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-outline">
+                        <span class="form-label" id="addon-wrapping">Departamento</span>
+                        <input id="departamento" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                               aria-describedby="addon-wrapping">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-outline">
+                        <span class="form-label" id="addon-wrapping">Circuito</span>
+                        <input id="circuito" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                               aria-describedby="addon-wrapping">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-outline">
+                        <span class="form-label" id="addon-wrapping">Nombre Circuito</span>
+                        <input id="nombre_circuito" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                               aria-describedby="addon-wrapping">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {#            <div hidden class="form-group">#}
+        {#                {{ form.id }}#}
+        {#            </div>#}
+        {#            <div class="form-group">#}
+        {#                {{ form.id }}#}
+        {#            </div>#}
+        {#            <div class="form-group">#}
+        {#                {{ form.dni }}#}
+        {#            </div>#}
+        {#            <div class="form-group">#}
+        {#                {{ form.apellido }}#}
+        {#            </div>#}
+        {#            <div class="form-group">#}
+        {#                {{ form.nombre }}#}
+        {#            </div>#}
+        {#            <div class="form-group">#}
+        {#                {{ form.sexo }}#}
+        {#            </div>#}
+        {#            <div class="form-group">#}
+        {#                {{ form.domicilio }}#}
+        {#            </div>#}
+        {#            <div class="form-group">#}
+        {#                {{ form.tipo_dni }}#}
+        {#            </div>#}
+        {#            <div class="form-group">#}
+        {#                {{ form.departamento }}#}
+        {#            </div>#}
+        {#            <div class="form-group">#}
+        {#                {{ form.circuito }}#}
+        {#            </div>#}
+        {#            <div class="form-group">#}
+        {#                {{ form.nombre_circuito }}#}
+        {#            </div>#}
+        {#            <div class="form-group">#}
+        {#                {{ form.voto }}#}
+        {#            </div>#}
+
+        <!-- ./Card Body -->
+        <!-- Card Footer-Buttons -->
+        <div class="card-footer text-center">
+            <button type="button" id="cleaninputdni" style="background-color:var(--orange01); FONT-SIZE: 9pt"
+                    class="btn text-white btn-rounded">
+                <i class="fa-solid fa-broom"></i> Limpar
+            </button>
+            <button type="submit" id="upDates" style="background-color:var(--green05); FONT-SIZE: 9pt"
+                    class="btn text-white btn-rounded">
+                <i class="fa-solid fa-rotate"></i> Actualizar
+            </button>
+        </div>
+        <!-- ./Card Footer-Buttons -->
+    </form>
+
+
+    <script>
+
+    </script>
+
+{% endblock %}
+<!-- ./Data Body -->
