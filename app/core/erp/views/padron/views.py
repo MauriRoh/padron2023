@@ -103,11 +103,12 @@ class PadronDNIUpdateView(CreateView):
             action = request.POST['action']
             if action == 'search_dni':
                 data = []
-                dni = Padron.objects.filter(dni__icontains=request.POST['term'])
-                for i in dni:
+                for i in Padron.objects.filter(dni__icontains=request.POST['term']):
                     item = i.toJSON()
-                    item['value'] = i.dni
+                    item['text'] = i.dni
                     data.append(item)
+                    print(data)
+                print(data)
             else:
                 data['error'] = 'No se pudo realizar la solicitud'
         except Exception as e:

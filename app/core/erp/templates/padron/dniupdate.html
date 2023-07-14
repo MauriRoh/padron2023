@@ -7,9 +7,25 @@
 <!-- Extra Head -->
 {% block head_extra %}
     <!-- AutoComplete -->
-    <link href="{% static 'librery/jquery-ui-1.13.2/jquery-ui.min.css' %}" rel="stylesheet"/>
-    <script src="{% static 'librery/jquery-ui-1.13.2/jquery-ui.min.js' %}"></script>
+    {#    <link href="{% static 'librery/jquery-ui-1.13.2/jquery-ui.min.css' %}" rel="stylesheet"/>#}
+    {#    <script src="{% static 'librery/jquery-ui-1.13.2/jquery-ui.min.js' %}"></script>#}
     <!-- ./AutoComplete -->
+    <!-- AutoComplete Select2 -->
+{#        <link href="{% static 'librery/select2-4.0.13/css/select2.min.css' %}" rel="stylesheet"/>#}
+{#        <link href="{% static 'librery/select2-4.0.13/css/select2-bootstrap4.min.css' %}" rel="stylesheet"/>#}
+{#        <script src="{% static 'librery/select2-4.0.13/js/select2.min.js' %}"></script>#}
+{#        <script src="{% static 'librery/select2-4.0.13/js/i18n/es.js' %}"></script>#}
+    <!-- AutoComplete Select2 -->
+    <link rel="stylesheet" href="{% static 'librery/select2-4.1.0/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'librery/select2-4.1.0/css/select2.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'librery/select2-4.1.0/css/select2-bootstrap4.min.css' %}"/>
+{#    <link rel="stylesheet" href="{% static 'librery/select2-4.1.0/css/select2-bootstrap-5-theme.min.css' %}"/>#}
+{#    <link rel="stylesheet" href="{% static 'librery/select2-4.1.0/css/select2-bootstrap-5-theme.rtl.min.css' %}"/>#}
+{#    <script src="{% static 'librery/select2-4.1.0/js/jquery.slim.min.js' %}"></script>#}
+{#    <script src="{% static 'librery/select2-4.1.0/js/bootstrap.bundle.min.js' %}"></script>#}
+    <script src="{% static 'librery/select2-4.1.0/js/select2.min.js' %}"></script>
+    <script src="{% static 'librery/select2-4.1.0/js/i18n/es.js' %}"></script>
+    <!-- AutoComplete Select2 -->
     <!-- JavaScript extra -->
     <script src="{% static 'padron/js/update.js' %}"></script>
     <!-- JavaScript extra -->
@@ -52,12 +68,16 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="input-group mb-3">
-                        {{ form.dni }}
-{#                        <input id="searchdni" type="text" class="form-control" placeholder="Ingrese DNI"#}
-{#                               aria-label="Ingrese DNI" aria-describedby="button-addon2">#}
+                        {#                        {{ form.dni }}#}
+                        {#                        <select class="input-group mb-3 select2-blue" name="dni"></select>#}
+                        <select id="search_dni" name="dni" type="text" class="form-control select2-blue"
+                                aria-label="Ingrese DNI" aria-describedby="button-addon2"></select>
+
                         <button style="background-color:var(--green05); Font-size: 12px" class="btn text-white"
                                 type="submit" id="button-addon2"><i class="fa-solid fa-rotate"></i> Actualizar
                         </button>
+
+
                     </div>
                     <div class="form-outline" style="display:none;">
                         <input id="id" style="display:none;" type="number" class="form-control" aria-label="id"
@@ -72,61 +92,61 @@
             <div class="row mb-4">
                 <div class="col">
                     <div class="form-outline">
-                        <label class="form-label" id="addon-wrapping">DNI</label>
-                        <input id="dni" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                        <label class="form-label">DNI</label>
+                        <input id="id_dni" type="text" class="form-control" readonly aria-label="dni"
                                aria-describedby="addon-wrapping">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-outline">
-                        <label class="form-label" id="addon-wrapping">Apellido</label>
-                        <input id="apellido" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                        <label class="form-label">Apellido</label>
+                        <input id="apellido" type="text" class="form-control" readonly aria-label="surname"
                                aria-describedby="addon-wrapping">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-outline">
-                        <label class="form-label" id="addon-wrapping">Nombre</label>
-                        <input id="nombre" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                        <label class="form-label">Nombre</label>
+                        <input id="nombre" type="text" class="form-control" readonly aria-label="name"
                                aria-describedby="addon-wrapping">
                     </div>
                 </div>
-                <div class="col">
-                    <div class="form-outline">
-                        <label class="form-label" id="addon-wrapping">Sexo</label>
-                        <input id="sexo" type="text" class="form-control" placeholder="Username" aria-label="Username"
-                               aria-describedby="addon-wrapping">
-                    </div>
-                </div>
+{#                <div class="col">#}
+{#                    <div class="form-outline">#}
+{#                        <label class="form-label">Sexo</label>#}
+{#                        <input id="sexo" type="text" class="form-control" readonly aria-label="sexo"#}
+{#                               aria-describedby="addon-wrapping">#}
+{#                    </div>#}
+{#                </div>#}
             </div>
 
 
             <div class="row mb-4">
                 <div class="col">
                     <div class="form-outline">
-                        <span class="form-label" id="addon-wrapping">Domicilio</span>
-                        <input id="domicilio" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                        <span class="form-label">Domicilio</span>
+                        <input id="domicilio" type="text" class="form-control" readonly aria-label="address"
                                aria-describedby="addon-wrapping">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-outline">
-                        <span class="form-label" id="addon-wrapping">Departamento</span>
-                        <input id="departamento" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                        <span class="form-label">Departamento</span>
+                        <input id="departamento" type="text" class="form-control" readonly aria-label="department"
                                aria-describedby="addon-wrapping">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-outline">
-                        <span class="form-label" id="addon-wrapping">Circuito</span>
-                        <input id="circuito" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                        <span class="form-label">Circuito</span>
+                        <input id="circuito" type="text" class="form-control" readonly aria-label="circuit"
                                aria-describedby="addon-wrapping">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-outline">
-                        <span class="form-label" id="addon-wrapping">Nombre Circuito</span>
-                        <input id="nombre_circuito" type="text" class="form-control" placeholder="Username" aria-label="Username"
+                        <span class="form-label">Nombre Circuito</span>
+                        <input id="nombre_circuito" type="text" class="form-control" readonly aria-label="circuit number"
                                aria-describedby="addon-wrapping">
                     </div>
                 </div>

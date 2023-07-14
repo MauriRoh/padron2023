@@ -42,44 +42,55 @@ $(function () {
     });
 
     // Autocomplet DNI
-
-    $('input[name="dni"]').autocomplete({
-            source: function (request, response) {
-            $.ajax({
-                url: window.location.pathname,
-                type: 'POST',
-                data: {
-                    'action': 'search_dni',
-                    'term': request.term
-                },
-                dataType: 'json',
-            }).done(function (data) {
-                response(data);
-            }).fail(function (jqXHR, textStatus, errorThrown) {
-                //alert(textStatus + ': ' + errorThrown);
-            }).always(function (data) {
-
-            });
+    $('select[name="dni"]').select2({
+        theme: "bootstrap4",
+        language: 'es',
+        allowClear: true,
+        ajax: {
+            delay: 250,
+            type: 'POST',
+            url: window.location.pathname,
+            data: function (params) {
+                let queryParameters = {
+                    term: params.term,
+                    action: 'search_dni',
+                    // ids: JSON.stringify(vents.get_ids())
+                }
+                return queryParameters;
+            },
+            // headers: {
+            //     'X-CSRFToken': csrftoken
+            // },
+            processResults: function (data) {
+                return {
+                    results: data
+                };
+            },
         },
-        delay: 500,
-        minLength: 1,
-        select: function (event, ui) {
-            event.preventDefault();
-            console.clear(ui.dni);
-            // ui.item.cant = 1;
-            // ui.item.subtotal = 0.00;
-            // ui.item.additional_cost = 0;
-            // ui.item.discount = 0;
-            // console.log(vents.items);
-            // vents.add(ui.item);
-            // $(this).val('');
-        }
+        placeholder: 'Ingrese DNI',
+        minimumInputLength: 6,
+    //     templateResult: formatRepo,
+    }).on('select2:select', function (e) {
+        let data = e.params.data;
+        console.log(data);
+        document.getElementById('id').value = data.id;
+        document.getElementById('id_dni').value = data.dni;
+        document.getElementById('apellido').value = data.apellido;
+        document.getElementById('nombre').value = data.nombre;
+        document.getElementById('domicilio').value = data.domicilio;
+        document.getElementById('departamento').value = data.departamento;
+        document.getElementById('circuito').value = data.circuito;
+        document.getElementById('nombre_circuito').value = data.nombre_circuito;
+        $(this).val('').trigger('change.select2');
+    //     if(!Number.isInteger(data.id)){
+    //         return false;
+    //     }
     });
+
 
 
     $('#cleaninputdni').on('click', function () {
-        document.getElementById("ingresedni").value = '';
+        document.getElementById("id_dni").value = '';
     });
 
 });
-
