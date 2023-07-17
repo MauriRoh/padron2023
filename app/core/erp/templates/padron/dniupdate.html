@@ -14,7 +14,7 @@
     <script src="{% static 'librery/select2-4.1.0/js/i18n/es.js' %}"></script>
     <!-- ./AutoComplete Select2 -->
     <!-- JavaScript extra -->
-    <script src="{% static 'padron/js/update.js' %}"></script>
+    <script src="{% static 'padron/js/dniupdate.js' %}"></script>
     <!-- JavaScript extra -->
 {% endblock %}
 <!-- ./Extra Head -->
@@ -55,22 +55,17 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="input-group mb-3">
-                        {#                        {{ form.dni }}#}
-                        {#                        <select class="input-group mb-3 select2-blue" name="dni"></select>#}
+
                         <select id="search_dni" name="dni" type="text" class="form-control select2-blue"
                                 aria-label="Ingrese DNI" aria-describedby="button-addon2" autofocus></select>
 
                         <button style="background-color:var(--green05); Font-size: 12px" class="btn text-white btnUpdateDNI" type="submit"><i class="fa-solid fa-rotate"></i> Actualizar
                         </button>
 
-
                     </div>
-{#                    <div class="form-outline" style="display:none;">#}
-{#                        <input id="id" style="display:none;" type="number" class="form-control" aria-label="id"#}
-{#                               aria-describedby="addon-wrapping">#}
-{#                    </div>#}
+
                     <div class="form-outline">
-                        <input id="id" name="id" type="number" class="form-control" aria-label="id"
+                        <input id="id" name="id" type="number" style="display:none;" class="form-control" aria-label="id"
                                aria-describedby="addon-wrapping">
                     </div>
                 </div>
@@ -109,7 +104,13 @@
                 <div class="col">
                     <div class="form-outline">
                         <span class="form-label">Votó</span>
-                        <input id="voto" name="voto" type="text" class="form-control is-invalid" readonly aria-label="address"
+                        <input id="voto" name="voto" type="text" class="form-control" readonly aria-label="address"
+                               aria-describedby="addon-wrapping">
+
+                        <input id="voto_invalid" type="text" class="form-control is-invalid" readonly aria-label="address"
+                               aria-describedby="addon-wrapping">
+
+                        <input id="voto_valid" type="text" class="form-control is-valid" readonly aria-label="address"
                                aria-describedby="addon-wrapping">
                     </div>
                 </div>

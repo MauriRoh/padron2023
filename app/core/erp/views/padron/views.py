@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView
 from core.erp.models import Padron
-from core.erp.forms import PadronModelForm
+from core.erp.forms import PadronModelForm, PadronDNIUpdateModelForm
 
 
 # Create your views here.
@@ -30,8 +30,6 @@ class PadronListView(ListView):
                 data['error'] = 'Ha ocurrido un Error. No se pudo realizar la solicitud'
         except Exception as e:
             data['error'] = str(e)
-            print(e)
-            print(data)
         return JsonResponse(data, safe=False)
 
     def get_context_data(self, **kwargs):
@@ -62,14 +60,15 @@ class PadronUpdateView(UpdateView):
             action = request.POST['action']
             if action == 'update':
                 dataproces = json.loads(request.POST['dataproces'])
-                votante = self.get_object()
-                votante.id = int(dataproces['id'])
-                for i in Padron.objects.filter(id=int(votante.id)):
-                    if i.voto == 0:
-                        votante.voto = 1
+                # votante = self.get_object()
+                # votante.id = int(dataproces['id'])
+                for i in Padron.objects.filter(pk=int(dataproces['id'])):
+                # for i in Padron.objects.filter(pk=int(request.POST['id'])):
+                    if int(dataproces['voto']) == 0:
+                        i.voto = 1
                     else:
-                        votante.voto = 0
-                    votante.save()
+                        i.voto = 0
+                    i.save()
             else:
                 data['error'] = 'No se pudo realizar la solicitud'
         except Exception as e:
@@ -88,9 +87,9 @@ class PadronUpdateView(UpdateView):
 
 
 
-class PadronDNIUpdateView(ListView):
+class PadronDNIUpdateView(CreateView):
     model = Padron
-    form_class = PadronModelForm
+    form_class = PadronDNIUpdateModelForm
     template_name = 'padron/dniupdate.html'
     success_url = reverse_lazy('app:padron_dniupdate')
     url_redirect = success_url
@@ -113,15 +112,12 @@ class PadronDNIUpdateView(ListView):
                     
             elif action == 'update_dni':
                 dataproces = json.loads(request.POST['dataproces'])
-                print(dataproces)
-                # padron = self.get_object()
-
-                # if Padron.objects.filter(pk=int(searchdni)):
-                #     if int(searchdni['voto']) == 1:
-                #         padron.voto = 0
-                #     else:
-                #         padron.voto = 1
-                #     padron.save()
+                for i in Padron.objects.filter(pk=int(dataproces['id'])):
+                    if int(dataproces['voto']) == 0:
+                        i.voto = 1
+                    else:
+                        i.voto = 0
+                    i.save()
             else:
                 data['error'] = 'No se pudo realizar la solicitud'
         except Exception as e:
@@ -134,7 +130,7 @@ class PadronDNIUpdateView(ListView):
         context['padron_url'] = reverse_lazy('app:padron_list')
         context['dni_no_url'] = reverse_lazy('app:dninoexist_list')
         context['padron_dni_update'] = reverse_lazy('app:padron_dniupdate')
-        context['action'] = 'search_dni'
+        context['action'] = 'update_dni'
         context['list_url'] = self.success_url
         return context
 

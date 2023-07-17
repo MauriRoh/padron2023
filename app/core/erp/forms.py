@@ -10,7 +10,7 @@ class PadronModelForm(ModelForm):
         self.fields['dni'].widget.attrs['autofocus'] = True
         for form in self.visible_fields():
             form.field.widget.attrs['class'] = 'form-control'
-            # form.field.widget.attrs['readonly'] = 'on'
+            form.field.widget.attrs['readonly'] = 'on'
 
     class Meta:
         model = Padron
@@ -92,6 +92,93 @@ class PadronModelForm(ModelForm):
         return data
 
 
+
+
+class PadronDNIUpdateModelForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for form in self.visible_fields():
+            form.field.widget.attrs['class'] = 'form-control'
+            # form.field.widget.attrs['readonly'] = 'on'
+
+    class Meta:
+        model = Padron
+        fields = '__all__'
+        widgets = {
+            'dni': forms.TextInput(
+                attrs={
+                    'placeholder': 'Ingrese DNI',
+                    'autocomplete': 'off',
+                }
+            ),
+            'apellido': forms.TextInput(
+                attrs={
+                    'placeholder': 'Apellido',
+                    'autocomplete': 'off',
+                }
+            ),
+            'nombre': forms.TextInput(
+                attrs={
+                    'placeholder': 'Nombre',
+                    'autocomplete': 'off',
+                }
+            ),
+            'tipo_dni': forms.TextInput(
+                attrs={
+                    'placeholder': 'Tipo DNI',
+                    'autocomplete': 'on',
+                }
+            ),
+            'sexo': forms.TextInput(
+                attrs={
+                    'placeholder': 'Sexo',
+                    'autocomplete': 'on',
+                }
+            ),
+            'domicilio': forms.TextInput(
+                attrs={
+                    'placeholder': 'Domicilio',
+                    'autocomplete': 'off',
+                }
+            ),
+            'departamento': forms.TextInput(
+                attrs={
+                    'placeholder': 'Departamento',
+                    'autocomplete': 'on',
+                }
+            ),
+            'circuito': forms.TextInput(
+                attrs={
+                    'placeholder': 'N° Circuito',
+                    'autocomplete': 'off',
+                }
+            ),
+            'nombre_circuito': forms.TextInput(
+                attrs={
+                    'placeholder': 'Nombre Circuito',
+                    'autocomplete': 'off',
+                }
+            ),
+            'voto': forms.TextInput(
+                attrs={
+                    'placeholder': 'Voto',
+                    'autocomplete': 'off',
+                }
+            ),
+        }
+
+    def save(self, commit=True):
+        data = {}
+        form = super()
+        try:
+            if form.is_valid():
+                instance = form.save()
+                data = instance.toJSON()
+            else:
+                data['error'] = form.errors
+        except Exception as e:
+            data['error'] = str(e)
+        return data
 
 
 class DniNoExistModelForm(ModelForm):
