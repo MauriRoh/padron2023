@@ -50,10 +50,8 @@ $(function () {
         columns: [
             {"data": "id"},
             {"data": "dni"},
-            {"data": "tipo_dni"},
             {"data": "apellido"},
             {"data": "nombre"},
-            {"data": "sexo"},
             {"data": "domicilio"},
             {"data": "departamento"},
             {"data": "circuito"},
@@ -62,7 +60,7 @@ $(function () {
         ],
         columnDefs: [
             {
-                targets: [-11],
+                targets: [-9],
                 class: 'text-center',
                 orderable: false,
                 render: function (data, type, row) {
@@ -70,7 +68,7 @@ $(function () {
                 }
             },
             {
-                targets: [-1, -2, -3, -4, -5, -6, -7, -8, -9, -10],
+                targets: [-1, -2, -3, -4, -5, -6, -7, -8],
                 class: 'text-left',
             },
 

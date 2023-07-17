@@ -65,7 +65,10 @@ class PadronUpdateView(UpdateView):
                 votante = self.get_object()
                 votante.id = int(dataproces['id'])
                 for i in Padron.objects.filter(id=int(votante.id)):
-                    votante.voto = 0
+                    if i.voto == 0:
+                        votante.voto = 1
+                    else:
+                        votante.voto = 0
                     votante.save()
             else:
                 data['error'] = 'No se pudo realizar la solicitud'
@@ -85,7 +88,7 @@ class PadronUpdateView(UpdateView):
 
 
 
-class PadronDNIUpdateView(CreateView):
+class PadronDNIUpdateView(ListView):
     model = Padron
     form_class = PadronModelForm
     template_name = 'padron/dniupdate.html'
@@ -107,8 +110,18 @@ class PadronDNIUpdateView(CreateView):
                     item = i.toJSON()
                     item['text'] = i.dni
                     data.append(item)
-                    print(data)
-                print(data)
+                    
+            elif action == 'update_dni':
+                dataproces = json.loads(request.POST['dataproces'])
+                print(dataproces)
+                # padron = self.get_object()
+
+                # if Padron.objects.filter(pk=int(searchdni)):
+                #     if int(searchdni['voto']) == 1:
+                #         padron.voto = 0
+                #     else:
+                #         padron.voto = 1
+                #     padron.save()
             else:
                 data['error'] = 'No se pudo realizar la solicitud'
         except Exception as e:
