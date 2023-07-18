@@ -58,10 +58,10 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">Lista Padron</a></li>
-                <li><a href="#">Voto</a></li>
-                <li><a href="#">DNI NO Encontrado</a></li>
+                <li><a href="{% url 'index' %}" class="active">Home</a></li>
+                <li><a href="{% url 'app:padron_list' %}">Lista Padron</a></li>
+                <li><a href="{% url 'app:padron_dniupdate' %}">Votó</a></li>
+                <li><a href="{% url 'app:dninoexist_list' %}">DNI NO Encontrado</a></li>
             </ul>
         </nav><!-- .navbar -->
 
@@ -79,7 +79,7 @@
                         laboriosam voluptatem repudiandae odio, vel exercitationem officiis provident minima. </p>
                 </blockquote>
                 <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-                    <a href="#about" class="btn-get-started">Get Started</a>
+                    <a href="{% url 'access:login' %}" class="btn-get-started">Ingresar</a>
                 </div>
 
             </div>

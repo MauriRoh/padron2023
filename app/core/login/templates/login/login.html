@@ -1,14 +1,93 @@
+{% extends 'login/homelogin.html' %}
+
 {% load static %}
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="data:,">
-    <title>{{ title }}</title>
+<!-- APP Widgwt Tweaks -->
+{% load widget_tweaks %}
 
-</head>
-<body>
+<!-- Body -->
+{% block body %}
+    <body class="hold-transition login-page">
 
-</body>
-</html>
+    <div class="login-box">
+        <!-- /.login-logo -->
+        <div class="card card-outline card-primary">
+
+            <div class="card-header text-center">
+                <a href="{% url 'index' %}" class="h1"><b>ELECC</b>IÓN</a>
+            </div>
+
+            <div class="card-body">
+                <p class="login-box-msg">Inicio de Sesión con Credenciales</p>
+
+                <form action="." method="post">
+                    <!-- Almacena la última sesión y sitio donde estuvo el usuario -->
+                    <input type="hidden" name="next" value="{{ next }}">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        {{ form.username|add_class:'form-control'|attr:'autocomplete:off'|attr:'placeholder:Ingrese su Username' }}
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fa-solid fa-user-large"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        {{ form.password|add_class:'form-control'|attr:'autocomplete:off'|attr:'placeholder:Ingrese su Password' }}
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fa-solid fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <button type="submit" style="background-color:var(--blue02); FONT-SIZE: 10pt"
+                                    class="btn btn-block text-white btn-rounded">
+                                <i class="fa-solid fa-right-to-bracket"></i> Iniciar sesión
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p class="text-center mt-2" style="font-size: 13px;">
+                                Si no recuerdas tu contraseña puedes resetearla dando click <a href="#">aqui </a>
+                            </p>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+        <!-- /.card -->
+    </div>
+
+    <!-- JavaScript -->
+    <script type="application/javascript">
+        {% if form.errors %}
+            let errors = '';
+            {% for field in form %}
+                {% for error in field.errors %}
+                    errors += '{{ error }}\n';
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                errors += '{{ error }}\n';
+            {% endfor %}
+            Swal.fire({
+                title: 'Error!',
+                text: errors,
+                icon: 'error'
+            });
+        {% endif %}
+    </script>
+    <!-- ./JavaScript -->
+    <!-- AdminLTE3 -->
+    <script src="{% static 'librery/AdminLTE-3.2.0/plugins/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'librery/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'librery/AdminLTE-3.2.0/dist/js/adminlte.min.js' %}"></script>
+    <!-- ./AdminLTE3 -->
+    </body>
+    <!-- ./Body -->
+{% endblock %}
+<!-- ./Body -->
