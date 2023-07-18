@@ -23,6 +23,7 @@ from core.homepage.views import IndexView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(), name='index'),
+    path('login/', include('core.login.urls')),
     path('erp/', include('core.erp.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -44,8 +44,9 @@ INSTALLED_APPS = [
     # New Libreries
     'widget_tweaks',
     # APPs"
+    'core.login',
+    'core.homepage',
     'core.erp',
-    'core.homepage'
 ]
 
 MIDDLEWARE = [
