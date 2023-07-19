@@ -1,16 +1,18 @@
 {% load static %}
+<!-- APP Widgwt Tweaks -->
+{% load widget_tweaks %}
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Bienvenido <strong>{{ request.user.username }}</h1></strong>
+                <h1>Bienvenido <strong>{{ request.user.username }}</strong></h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ padron_url }}">Listado Padron</a></li>
-                    <li class="breadcrumb-item"><a href="{{ padron_dni_update }}">Votó</a></li>
-                    <li class="breadcrumb-item"><a href="{{ dni_no_url }}">DNI NO Encontrado</a></li>
+                    <li class="breadcrumb-item"><a href="{{ padron_url }}"><i class="fa-solid fa-rectangle-list"></i> Padrón</a></li>
+                    <li class="breadcrumb-item"><a href="{{ padron_dni_update }}"><i class="fa-solid fa-person-circle-question"></i> Votó</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'app:dninoexist_create' %}"><i class="fa-solid fa-id-card"></i> DNI NO Encontrado</a></li>
                 </ol>
             </div>
         </div>

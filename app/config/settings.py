@@ -143,9 +143,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
 
 # DASHBOARD / LOGIN
-LOGIN_REDIRECT_URL = 'erp/padron/list/'
+LOGIN_REDIRECT_URL = '/erp/padron/list/'
 
 LOGOUT_REDIRECT_URL = '/login/'
 
-# LOGIN_URL = '/login/'
+LOGIN_URL = '/login/'
 

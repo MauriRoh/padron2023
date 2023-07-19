@@ -1,4 +1,6 @@
 {% load static %}
+<!-- APP Widgwt Tweaks -->
+{% load widget_tweaks %}
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -15,7 +17,31 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
 
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <i class="fa-solid fa-building-flag"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <div class="dropdown-divider"></div>
+                <a href="{% url 'app:padron_list' %}" class="dropdown-item">
+                    <i class="fa-solid fa-rectangle-list mr-2"></i> Padrón
+                </a>
+
+                <div class="dropdown-divider"></div>
+                <a href="{% url 'app:padron_dniupdate' %}" class="dropdown-item">
+                    <i class="fa-solid fa-person-circle-question mr-2"></i> Votó
+                </a>
+
+                <div class="dropdown-divider"></div>
+                <a href="{% url 'app:dninoexist_create' %}" class="dropdown-item">
+                    <i class="fa-solid fa-id-card mr-2"></i> DNI NO Encontrados
+                </a>
+            </div>
+        </li>
+
+
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+
 
             {#            {% if request.user.groups.all %}#}
             {#                <li class="nav-item dropdown">#}
