@@ -1,5 +1,7 @@
 import json
 import os
+
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
@@ -15,6 +17,7 @@ class PadronListView(ListView):
     template_name = 'padron/list.html'
 
     @method_decorator(csrf_exempt)
+    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
@@ -50,6 +53,7 @@ class PadronUpdateView(UpdateView):
     url_redirect = success_url
 
     @method_decorator(csrf_exempt)
+    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)
@@ -95,6 +99,7 @@ class PadronDNIUpdateView(CreateView):
     url_redirect = success_url
 
     @method_decorator(csrf_exempt)
+    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         # self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)
