@@ -1,6 +1,7 @@
 import json
 import os
 from django.contrib.auth.mixins import LoginRequiredMixin
+from core.erp.mixins import ValidatePermissionRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.utils.decorators import method_decorator
@@ -9,14 +10,13 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView
 from core.erp.models import Padron
 from core.erp.forms import PadronModelForm, PadronDNIUpdateModelForm
-from core.erp.mixins import IsSuperuserMixin
-
 
 
 # Create your views here.
-class PadronListView(LoginRequiredMixin, ListView):
+class PadronListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView):
     model = Padron
     template_name = 'padron/list.html'
+    permission_required = 'view_padron'
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
@@ -46,12 +46,13 @@ class PadronListView(LoginRequiredMixin, ListView):
         return context
 
 
-class PadronUpdateView(LoginRequiredMixin, UpdateView):
+class PadronUpdateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, UpdateView):
     model = Padron
     form_class = PadronModelForm
     template_name = 'padron/update.html'
     success_url = reverse_lazy('app:padron_list')
     url_redirect = success_url
+    permission_required = 'change_padron'
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
@@ -90,12 +91,13 @@ class PadronUpdateView(LoginRequiredMixin, UpdateView):
         return context
 
 
-class PadronDNIUpdateView(LoginRequiredMixin, CreateView):
+class PadronDNIUpdateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, CreateView):
     model = Padron
     form_class = PadronDNIUpdateModelForm
     template_name = 'padron/dniupdate.html'
     success_url = reverse_lazy('app:padron_dniupdate')
     url_redirect = success_url
+    permission_required = 'change_padron'
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):

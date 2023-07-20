@@ -44,6 +44,22 @@
 
     {% endblock %}
     <!-- ./JavaScript -->
+    <!-- Mensaje ERROR Permisos -->
+    <script>
+        {% if messages %}
+            var html = '<p>';
+            {% for message in messages %}
+                html += '{{ message }}<br>';
+            {% endfor %}
+            html += '</p>';
+            Swal.fire({
+                title: 'Error!',
+                html: html,
+                icon: 'error'
+            });
+        {% endif %}
+    </script>
+    <!-- ./Mensaje ERROR Permisos -->
     </body>
 {% endblock %}
 <!-- ./Body -->

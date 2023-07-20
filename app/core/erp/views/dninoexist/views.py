@@ -1,6 +1,7 @@
 import json
 import os
 from django.contrib.auth.mixins import LoginRequiredMixin
+from core.erp.mixins import ValidatePermissionRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
@@ -13,9 +14,10 @@ from core.erp.models import DniNoExist
 from core.erp.forms import DniNoExistModelForm
 
 
-class DniNoExistListView(LoginRequiredMixin, ListView):
+class DniNoExistListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView):
     model = DniNoExist
     template_name = 'dninoexist/list.html'
+    permission_required = 'view_dninoexist'
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
@@ -45,11 +47,12 @@ class DniNoExistListView(LoginRequiredMixin, ListView):
         context['padron_dni_update'] = reverse_lazy('app:padron_dniupdate')
         return context
 
-class DniNoExistCreateView(LoginRequiredMixin, CreateView):
+class DniNoExistCreateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, CreateView):
     model = DniNoExist
     form_class = DniNoExistModelForm
     template_name = 'dninoexist/create.html'
     success_url = reverse_lazy('app:dninoexist_list')
+    permission_required = 'add_dninoexist'
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
@@ -79,12 +82,13 @@ class DniNoExistCreateView(LoginRequiredMixin, CreateView):
         return context
 
 
-class DniNoExistUpdateView(LoginRequiredMixin, UpdateView):
+class DniNoExistUpdateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, UpdateView):
     model = DniNoExist
     form_class = DniNoExistModelForm
     template_name = 'dninoexist/create.html'
     success_url = reverse_lazy('app:dninoexist_list')
     url_redirect = success_url
+    permission_required = 'change_dninoexist'
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
@@ -114,11 +118,12 @@ class DniNoExistUpdateView(LoginRequiredMixin, UpdateView):
         return context
 
 
-class DniNoExistDeleteView(LoginRequiredMixin, DeleteView):
+class DniNoExistDeleteView(LoginRequiredMixin, ValidatePermissionRequiredMixin, DeleteView):
     model = DniNoExist
     template_name = 'dninoexist/delete.html'
     success_url = reverse_lazy('app:dninoexist_list')
     url_redirect = success_url
+    permission_required = 'delete_dninoexist'
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
