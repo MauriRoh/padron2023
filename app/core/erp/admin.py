@@ -5,10 +5,8 @@ from core.erp.models import *
 class PadronModelAdmin(admin.ModelAdmin):
     list_display = (
         'dni',
-        'tipo_dni',
         'apellido',
         'nombre',
-        'sexo',
         'domicilio',
         'departamento',
         'circuito',

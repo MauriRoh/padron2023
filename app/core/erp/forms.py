@@ -1,6 +1,5 @@
 from django import forms
-from django.forms import ModelForm, Form
-
+from django.forms import ModelForm
 from core.erp.models import *
 
 
@@ -32,18 +31,6 @@ class PadronModelForm(ModelForm):
                 attrs={
                     'placeholder': 'Nombre',
                     'autocomplete': 'off',
-                }
-            ),
-            'tipo_dni': forms.TextInput(
-                attrs={
-                    'placeholder': 'Tipo DNI',
-                    'autocomplete': 'on',
-                }
-            ),
-            'sexo': forms.TextInput(
-                attrs={
-                    'placeholder': 'Sexo',
-                    'autocomplete': 'on',
                 }
             ),
             'domicilio': forms.TextInput(
@@ -121,18 +108,6 @@ class PadronDNIUpdateModelForm(ModelForm):
                 attrs={
                     'placeholder': 'Nombre',
                     'autocomplete': 'off',
-                }
-            ),
-            'tipo_dni': forms.TextInput(
-                attrs={
-                    'placeholder': 'Tipo DNI',
-                    'autocomplete': 'on',
-                }
-            ),
-            'sexo': forms.TextInput(
-                attrs={
-                    'placeholder': 'Sexo',
-                    'autocomplete': 'on',
                 }
             ),
             'domicilio': forms.TextInput(

@@ -1,6 +1,6 @@
 import json
 import os
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.utils.decorators import method_decorator
@@ -9,15 +9,16 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView
 from core.erp.models import Padron
 from core.erp.forms import PadronModelForm, PadronDNIUpdateModelForm
+from core.erp.mixins import IsSuperuserMixin
+
 
 
 # Create your views here.
-class PadronListView(ListView):
+class PadronListView(LoginRequiredMixin, ListView):
     model = Padron
     template_name = 'padron/list.html'
 
     @method_decorator(csrf_exempt)
-    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
@@ -45,7 +46,7 @@ class PadronListView(ListView):
         return context
 
 
-class PadronUpdateView(UpdateView):
+class PadronUpdateView(LoginRequiredMixin, UpdateView):
     model = Padron
     form_class = PadronModelForm
     template_name = 'padron/update.html'
@@ -53,7 +54,6 @@ class PadronUpdateView(UpdateView):
     url_redirect = success_url
 
     @method_decorator(csrf_exempt)
-    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)
@@ -90,8 +90,7 @@ class PadronUpdateView(UpdateView):
         return context
 
 
-
-class PadronDNIUpdateView(CreateView):
+class PadronDNIUpdateView(LoginRequiredMixin, CreateView):
     model = Padron
     form_class = PadronDNIUpdateModelForm
     template_name = 'padron/dniupdate.html'
@@ -99,7 +98,6 @@ class PadronDNIUpdateView(CreateView):
     url_redirect = success_url
 
     @method_decorator(csrf_exempt)
-    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         # self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)

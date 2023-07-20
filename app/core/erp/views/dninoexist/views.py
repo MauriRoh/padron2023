@@ -1,3 +1,6 @@
+import json
+import os
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
@@ -10,12 +13,11 @@ from core.erp.models import DniNoExist
 from core.erp.forms import DniNoExistModelForm
 
 
-class DniNoExistListView(ListView):
+class DniNoExistListView(LoginRequiredMixin, ListView):
     model = DniNoExist
     template_name = 'dninoexist/list.html'
 
     @method_decorator(csrf_exempt)
-    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
@@ -43,14 +45,13 @@ class DniNoExistListView(ListView):
         context['padron_dni_update'] = reverse_lazy('app:padron_dniupdate')
         return context
 
-class DniNoExistCreateView(CreateView):
+class DniNoExistCreateView(LoginRequiredMixin, CreateView):
     model = DniNoExist
     form_class = DniNoExistModelForm
     template_name = 'dninoexist/create.html'
     success_url = reverse_lazy('app:dninoexist_list')
 
     @method_decorator(csrf_exempt)
-    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
@@ -78,7 +79,7 @@ class DniNoExistCreateView(CreateView):
         return context
 
 
-class DniNoExistUpdateView(UpdateView):
+class DniNoExistUpdateView(LoginRequiredMixin, UpdateView):
     model = DniNoExist
     form_class = DniNoExistModelForm
     template_name = 'dninoexist/create.html'
@@ -86,7 +87,6 @@ class DniNoExistUpdateView(UpdateView):
     url_redirect = success_url
 
     @method_decorator(csrf_exempt)
-    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)
@@ -114,14 +114,13 @@ class DniNoExistUpdateView(UpdateView):
         return context
 
 
-class DniNoExistDeleteView(DeleteView):
+class DniNoExistDeleteView(LoginRequiredMixin, DeleteView):
     model = DniNoExist
     template_name = 'dninoexist/delete.html'
     success_url = reverse_lazy('app:dninoexist_list')
     url_redirect = success_url
 
     @method_decorator(csrf_exempt)
-    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)

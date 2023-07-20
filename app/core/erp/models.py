@@ -3,18 +3,14 @@ from django.forms import model_to_dict
 
 # Create your models here.
 class Padron(models.Model):
-    id = models.IntegerField(primary_key=True)
-    dni = models.CharField(max_length=10, blank=True, null=True, verbose_name='DNI')
+    dni = models.IntegerField(blank=True, null=True, verbose_name='DNI')
     apellido = models.CharField(max_length=255, blank=True, null=True, verbose_name='Apellido')
-    nombre = models.CharField(max_length=255, blank=True, null=True, verbose_name='Nombre')
-    sexo = models.CharField(max_length=2, blank=True, null=True, verbose_name='Sexo')
+    nombre = models.CharField(max_length=255, blank=True, null=True, verbose_name='Nombres')
     domicilio = models.CharField(max_length=255, blank=True, null=True, verbose_name='Domicilio')
-    tipo_dni = models.CharField(max_length=25, blank=True, null=True, verbose_name='Tipo DNI')
-    n = models.SmallIntegerField(blank=True, null=True, verbose_name='Número')
     departamento = models.CharField(max_length=255, blank=True, null=True, verbose_name='Departamento')
     circuito = models.CharField(max_length=8, blank=True, null=True, verbose_name='Circuito')
     nombre_circuito = models.CharField(max_length=255, blank=True, null=True, verbose_name='Nombre Circuito')
-    voto = models.SmallIntegerField(blank=True, null=True, verbose_name='Votó')
+    voto = models.SmallIntegerField(default=1, blank=True, null=True, verbose_name='Votó')
 
     def __str__(self):
         return self.dni
@@ -24,7 +20,6 @@ class Padron(models.Model):
         return item
 
     class Meta:
-        managed = False
         db_table = 'padron'
         ordering = ['id']
 
@@ -49,3 +44,7 @@ class DniNoExist(models.Model):
         db_table = 'dninoexist'
         ordering = ['id']
 
+# id = models.IntegerField(primary_key=True)
+# sexo = models.CharField(max_length=2, blank=True, null=True, verbose_name='Sexo')
+# tipo_dni = models.CharField(max_length=25, blank=True, null=True, verbose_name='Tipo DNI')
+# n = models.SmallIntegerField(blank=True, null=True, verbose_name='Número')
