@@ -9,13 +9,11 @@
     <!-- Card Header -->
     <form method="POST" action="." enctype="multipart/form-data">
 
-{#        <div class="card navbar-dark text-white" style="background-color:#F24130;">#}
         <div class="card card-danger card-outline">
             <div class="card-header">
                 <h3 class="card-title" style="color:var(--red02);">
-{#                <h3 class="card-title">#}
                     <i class="fas fa-solid fa-trash-can"></i>
-                    {{title}}
+                    {{ title }}
                 </h3>
             </div>
         </div>
@@ -28,25 +26,21 @@
                     <h5><i class="fa-solid fa-triangle-exclamation"></i>
                         ¡Ha ocurrido un ERROR al intentar Eliminar el registro!
                     </h5>
-{#                    <ul>#}
-{#                        {% for field in form %}#}
-{#                            {% for error in field.errors %}#}
-{#                                <li>{{ error }}</li>#}
-{#                            {% endfor %}#}
-{#                        {% endfor %}#}
-{#                    </ul>#}
                 </div>
             {% endif %}
             <div class="alert text-white" style="background-color:var(--red02);">
                 <h5><strong><i class="fa-solid fa-triangle-exclamation"></i> Notificación!</strong></h5>
-                ¿Estás seguro de eliminar el DNI: <strong> {{ object.dni }} </strong>? Si confirma la eliminación, no podrá acceder nuevamente a este.
+                ¿Estás seguro de eliminar el registro: <strong> {{ object.id }} </strong>? Si confirma la eliminación,
+                no podrá acceder nuevamente a este.
             </div>
         </div>
         <div class="card-footer text-center">
-            <button type="submit" style="background-color:var(--red02); FONT-SIZE: 9pt" class="btn text-white btn-rounded">
+            <button type="submit" style="background-color:var(--red02); FONT-SIZE: 9pt"
+                    class="btn text-white btn-rounded">
                 <i class="fa-solid fa-trash-can sm-1"></i> Confirmar
             </button>
-            <a href="{{ list_url }}" style="background-color:var(--red06); FONT-SIZE: 9pt" class="btn text-white btn-rounded">
+            <a href="{{ list_url }}" style="background-color:var(--red06); FONT-SIZE: 9pt"
+               class="btn text-white btn-rounded">
                 <i class="fa-solid fa-xmark ml-1"></i> Cancelar
             </a>
         </div>
@@ -55,7 +49,6 @@
     <script>
         $('form').on('submit', function (e) {
             e.preventDefault();
-            {#let dataForm = $(this).serializeArray();#}
             $.ajax({
                 url: window.location.pathname,
                 type: 'POST',
@@ -72,9 +65,9 @@
             }).always(function (data) {
 
             });
-        });
+        })
     </script>
-
 
 {% endblock %}
 <!-- ./Data Body -->
+

@@ -3,20 +3,19 @@
 {% load static %}
 <!-- Head List -->
 {% block head_List %}
-    <script src="{% static 'dninoexist/js/list.js' %}"></script>
+    <script src="{% static 'user/js/list.js' %}"></script>
 {% endblock %}
 <!-- ./Head List -->
 <!-- Table -->
 {% block columns %}
     <tr>
-        <th class="th-sm">Acción</th>
-        <th class="th-sm">N° Distrito</th>
-        <th class="th-sm">N° Circuito</th>
-        <th class="th-sm">N° Mesa</th>
-        <th class="th-sm">N° Orden</th>
-        <th class="th-sm">DNI</th>
-        <th class="th-sm">Apellidos</th>
-        <th class="th-sm">Nombres</th>
+        <th class="th-sm">Acciones</th>
+        <th class="th-sm">Nombres y Apellido</th>
+        <th class="th-sm">Username</th>
+        <th class="th-sm">Email</th>
+        <th class="th-sm">Fecha Creación</th>
+        <th class="th-sm">Avatar</th>
+        <th class="th-sm">Grupos</th>
     </tr>
 {% endblock %}
 
@@ -26,10 +25,8 @@
 <!-- Footer-Buttons -->
 {% block footer_buttons %}
     <div class="card-footer text-center">
-        <a href="{{ create_url }}" style="background-color:var(--blue02); FONT-SIZE: 9pt"
+        <a href="{% url 'user:user_create' %}" style="background-color:var(--blue02); FONT-SIZE: 9pt"
            class="btn text-white btn-rounded"><i class="fa-solid fa-plus"></i> Crear</a>
-        <a href="{{ create_url }}" style="background-color:var(--green08); FONT-SIZE: 9pt"
-           class="btn text-white btn-rounded"><i class="fa-solid fa-list-check"></i> Votó</a>
         <a href="{{ list_url }}" style="background-color:var(--green05); FONT-SIZE: 9pt"
            class="btn text-white btn-rounded"><i class="fa-solid fa-rotate"></i> Actualizar</a>
     </div>

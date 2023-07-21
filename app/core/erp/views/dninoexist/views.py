@@ -76,8 +76,8 @@ class DniNoExistCreateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, 
         context['title'] = 'Crear DNI No Encontrado'
         context['padron_url'] = reverse_lazy('app:padron_list')
         context['dni_no_url'] = reverse_lazy('app:dninoexist_list')
-        context['list_url'] = reverse_lazy('app:dninoexist_list')
         context['padron_dni_update'] = reverse_lazy('app:padron_dniupdate')
+        context['list_url'] = reverse_lazy('app:dninoexist_list')
         context['action'] = 'create'
         return context
 
@@ -110,6 +110,7 @@ class DniNoExistUpdateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, 
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['title'] = 'Editar DNI No Encontrado'
         context['padron_url'] = reverse_lazy('app:padron_list')
         context['dni_no_url'] = reverse_lazy('app:dninoexist_list')
         context['padron_dni_update'] = reverse_lazy('app:padron_dniupdate')
