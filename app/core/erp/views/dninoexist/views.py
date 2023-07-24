@@ -14,7 +14,7 @@ from core.erp.models import DniNoExist
 from core.erp.forms import DniNoExistModelForm
 
 
-class DniNoExistListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView):
+class DniNoExistListView(LoginRequiredMixin, ListView):
     model = DniNoExist
     template_name = 'dninoexist/list.html'
     permission_required = 'view_dninoexist'
@@ -47,7 +47,8 @@ class DniNoExistListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, Li
         context['padron_dni_update'] = reverse_lazy('app:padron_dniupdate')
         return context
 
-class DniNoExistCreateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, CreateView):
+
+class DniNoExistCreateView(LoginRequiredMixin, CreateView):
     model = DniNoExist
     form_class = DniNoExistModelForm
     template_name = 'dninoexist/create.html'
@@ -82,7 +83,7 @@ class DniNoExistCreateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, 
         return context
 
 
-class DniNoExistUpdateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, UpdateView):
+class DniNoExistUpdateView(LoginRequiredMixin, UpdateView):
     model = DniNoExist
     form_class = DniNoExistModelForm
     template_name = 'dninoexist/create.html'
@@ -119,7 +120,7 @@ class DniNoExistUpdateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, 
         return context
 
 
-class DniNoExistDeleteView(LoginRequiredMixin, ValidatePermissionRequiredMixin, DeleteView):
+class DniNoExistDeleteView(LoginRequiredMixin, DeleteView):
     model = DniNoExist
     template_name = 'dninoexist/delete.html'
     success_url = reverse_lazy('app:dninoexist_list')

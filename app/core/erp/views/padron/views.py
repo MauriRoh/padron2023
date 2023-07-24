@@ -13,7 +13,8 @@ from core.erp.forms import PadronModelForm, PadronDNIUpdateModelForm
 
 
 # Create your views here.
-class PadronListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView):
+# class PadronListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView):
+class PadronListView(LoginRequiredMixin, ListView):
     model = Padron
     template_name = 'padron/list.html'
     permission_required = 'view_padron'
@@ -21,6 +22,10 @@ class PadronListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListVi
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        request.user.get_group_session()
+        return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         data = {}
@@ -46,7 +51,7 @@ class PadronListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListVi
         return context
 
 
-class PadronUpdateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, UpdateView):
+class PadronUpdateView(LoginRequiredMixin, UpdateView):
     model = Padron
     form_class = PadronModelForm
     template_name = 'padron/update.html'
@@ -91,7 +96,7 @@ class PadronUpdateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, Upda
         return context
 
 
-class PadronDNIUpdateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, CreateView):
+class PadronDNIUpdateView(LoginRequiredMixin, CreateView):
     model = Padron
     form_class = PadronDNIUpdateModelForm
     template_name = 'padron/dniupdate.html'
@@ -138,4 +143,3 @@ class PadronDNIUpdateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, C
         context['action'] = 'update_dni'
         context['list_url'] = self.success_url
         return context
-

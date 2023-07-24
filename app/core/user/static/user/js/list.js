@@ -82,7 +82,7 @@ $(function () {
                 render: function (data, type, row) {
                     let html = '';
                     $.each(row.groups, function (key, value) {
-                        html += '<span style="background-color:var(--green08); FONT-SIZE: 10pt" class="badge text-white">' + value.name + '</span> ';
+                        html += '<span style="background-color:var(--green05); FONT-SIZE: 8pt" class="badge text-white">' + value.name + '</span> ';
                     });
                     return html;
                 }
