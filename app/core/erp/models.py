@@ -8,8 +8,8 @@ class Padron(models.Model):
     nombre = models.CharField(max_length=255, blank=True, null=True, verbose_name='Nombres')
     domicilio = models.CharField(max_length=255, blank=True, null=True, verbose_name='Domicilio')
     departamento = models.CharField(max_length=255, blank=True, null=True, verbose_name='Departamento')
-    circuito = models.CharField(max_length=8, blank=True, null=True, verbose_name='Circuito')
     nombre_circuito = models.CharField(max_length=255, blank=True, null=True, verbose_name='Nombre Circuito')
+    codigo_circuito = models.CharField(max_length=10, blank=True, null=True, verbose_name='Código Circuito')
     voto = models.SmallIntegerField(default=1, blank=True, null=True, verbose_name='Votó')
 
     def __str__(self):
@@ -44,7 +44,7 @@ class DniNoExist(models.Model):
         db_table = 'dninoexist'
         ordering = ['id']
 
-# id = models.IntegerField(primary_key=True)
-# sexo = models.CharField(max_length=2, blank=True, null=True, verbose_name='Sexo')
-# tipo_dni = models.CharField(max_length=25, blank=True, null=True, verbose_name='Tipo DNI')
-# n = models.SmallIntegerField(blank=True, null=True, verbose_name='Número')
+
+
+# circuito = models.CharField(max_length=8, blank=True, null=True, verbose_name='Nombre Circuito')
+# nombre_circuito = models.CharField(max_length=255, blank=True, null=True, verbose_name='Nombre Circuito')

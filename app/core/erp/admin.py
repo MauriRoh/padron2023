@@ -9,12 +9,12 @@ class PadronModelAdmin(admin.ModelAdmin):
         'nombre',
         'domicilio',
         'departamento',
-        'circuito',
         'nombre_circuito',
+        'codigo_circuito',
         'voto',
     )
     # Buscador
-    search_fields = ('dni', 'apellido', 'nombre', 'departamento', 'circuito', 'nombre_circuito', 'voto',)
+    search_fields = ('dni', 'apellido', 'nombre', 'departamento', 'nombre_circuito', 'codigo_circuito', 'voto',)
     ordering = ['dni']
 admin.site.register(Padron, PadronModelAdmin)
 

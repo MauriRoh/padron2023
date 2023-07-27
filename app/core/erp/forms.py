@@ -45,15 +45,15 @@ class PadronModelForm(ModelForm):
                     'autocomplete': 'on',
                 }
             ),
-            'circuito': forms.TextInput(
-                attrs={
-                    'placeholder': 'N° Circuito',
-                    'autocomplete': 'off',
-                }
-            ),
             'nombre_circuito': forms.TextInput(
                 attrs={
                     'placeholder': 'Nombre Circuito',
+                    'autocomplete': 'off',
+                }
+            ),
+            'codigo_circuito': forms.TextInput(
+                attrs={
+                    'placeholder': 'Código Circuito',
                     'autocomplete': 'off',
                 }
             ),

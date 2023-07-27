@@ -66,7 +66,7 @@ $(function () {
             {"data": "nombre"},
             {"data": "domicilio"},
             {"data": "departamento"},
-            {"data": "circuito"},
+            {"data": "codigo_circuito"},
             {"data": "nombre_circuito"},
             {"data": "voto"},
         ],
