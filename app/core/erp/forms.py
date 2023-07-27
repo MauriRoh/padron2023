@@ -57,6 +57,12 @@ class PadronModelForm(ModelForm):
                     'autocomplete': 'off',
                 }
             ),
+            'mesa': forms.TextInput(
+                attrs={
+                    'placeholder': 'Ingrese N° Mesa',
+                    'autocomplete': 'off',
+                }
+            ),
             'voto': forms.TextInput(
                 attrs={
                     'placeholder': 'Voto',

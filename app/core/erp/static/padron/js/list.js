@@ -68,11 +68,12 @@ $(function () {
             {"data": "departamento"},
             {"data": "codigo_circuito"},
             {"data": "nombre_circuito"},
+            {"data": "mesa"},
             {"data": "voto"},
         ],
         columnDefs: [
             {
-                targets: [-9],
+                targets: [-10],
                 class: 'text-center',
                 orderable: false,
                 render: function (data, type, row) {
@@ -80,7 +81,7 @@ $(function () {
                 }
             },
             {
-                targets: [-1, -2, -3, -4, -5, -6, -7, -8],
+                targets: [-1, -2, -3, -4, -5, -6, -7, -8, -9],
                 class: 'text-left',
             },
             {

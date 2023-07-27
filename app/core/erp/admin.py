@@ -11,6 +11,7 @@ class PadronModelAdmin(admin.ModelAdmin):
         'departamento',
         'nombre_circuito',
         'codigo_circuito',
+        'mesa',
         'voto',
     )
     # Buscador

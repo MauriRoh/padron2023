@@ -10,6 +10,7 @@ class Padron(models.Model):
     departamento = models.CharField(max_length=255, blank=True, null=True, verbose_name='Departamento')
     nombre_circuito = models.CharField(max_length=255, blank=True, null=True, verbose_name='Nombre Circuito')
     codigo_circuito = models.CharField(max_length=10, blank=True, null=True, verbose_name='Código Circuito')
+    mesa = models.IntegerField(blank=True, null=True, verbose_name='Número Mesa')
     voto = models.SmallIntegerField(default=1, blank=True, null=True, verbose_name='Votó')
 
     def __str__(self):

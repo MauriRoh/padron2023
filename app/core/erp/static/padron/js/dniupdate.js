@@ -51,6 +51,7 @@ $(function () {
         document.getElementById('departamento').value = data.departamento;
         document.getElementById('circuito').value = data.circuito;
         document.getElementById('nombre_circuito').value = data.nombre_circuito;
+        document.getElementById('mesa').value = data.nombre_circuito;
         document.getElementById('voto').value = data.voto;
         if (parseInt(data.voto) === 1){
             document.getElementById('voto').style.display = 'none';
