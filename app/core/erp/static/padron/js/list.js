@@ -28,6 +28,18 @@ $(function () {
                 "colvis": "Visibilidad"
             }
         },
+        // Buttons DataTable
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                text:'<i class="fa-solid fa-file-excel"></i>',
+                titleAttr: 'Excel',
+                className: 'btn btn-success btn-xs',
+                // style: 'FONT-SIZE: 12pt',
+                // fontSize: 12,
+            },
+        ],
         scrollX: true,
         paging: true,
         responsive: true,
@@ -43,9 +55,9 @@ $(function () {
                 'action': 'searchdata'
             },
             dataSrc: "",
-            // headers: {
-            //     'X-CSRFToken': csrftoken
-            // }
+            headers: {
+                'X-CSRFToken': csrftoken
+            }
         },
         columns: [
             {"data": "id"},
@@ -70,6 +82,16 @@ $(function () {
             {
                 targets: [-1, -2, -3, -4, -5, -6, -7, -8],
                 class: 'text-left',
+            },
+            {
+                targets: [-1],
+                class: 'text-center',
+                orderable: false,
+                render: function (data, type, row) {
+
+                        return buttons ='<span style="background-color:var(--red06); FONT-SIZE: 12pt" class="badge text-white">' + row.voto + '</span> ';
+
+                }
             },
 
         ],

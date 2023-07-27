@@ -144,7 +144,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
 
 # DASHBOARD / LOGIN
-LOGIN_REDIRECT_URL = '/erp/padron/list/'
+LOGIN_REDIRECT_URL = '/erp/dashboard/'
 
 LOGOUT_REDIRECT_URL = '/login/'
 
@@ -156,3 +156,13 @@ AUTH_USER_MODEL = 'user.User'
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 # SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
+# EMAIL
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_PORT = 587
+
+EMAIL_HOST_USER = 'correo_name'
+
+EMAIL_HOST_PASSWORD = 'correo_passwor'
+
+DOMAIN = ''     # Dominio del server donde se alojará la aplicación

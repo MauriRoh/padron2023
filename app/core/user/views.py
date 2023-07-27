@@ -159,14 +159,14 @@ class UserChangeGroup(LoginRequiredMixin, View):
             request.session['group'] = Group.objects.get(pk=self.kwargs['pk'])
         except:
             pass
-        return HttpResponseRedirect(reverse_lazy('app:padron_list'))
+        return HttpResponseRedirect(reverse_lazy('app:dashboard'))
 
 
 class UserProfileView(LoginRequiredMixin, UpdateView):
     model = User
     form_class = UserProfileForm
     template_name = 'user/profile.html'
-    success_url = reverse_lazy('app:padron_list')
+    success_url = reverse_lazy('app:dashboard')
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):

@@ -30,9 +30,9 @@ $(function () {
                 }
                 return queryParameters;
             },
-            // headers: {
-            //     'X-CSRFToken': csrftoken
-            // },
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
             processResults: function (data) {
                 return {
                     results: data

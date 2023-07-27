@@ -42,10 +42,10 @@ $(function () {
             data: {
                 'action': 'searchdata'
             },
-            dataSrc: ""
-            // headers: {
-            //     'X-CSRFToken': csrftoken
-            // }
+            dataSrc: "",
+            headers: {
+                'X-CSRFToken': csrftoken
+            }
         },
         columns: [
             {"data": "id"},

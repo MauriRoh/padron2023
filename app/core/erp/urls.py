@@ -1,6 +1,7 @@
 from django.urls import path
 from core.erp.views.padron.views import *
 from core.erp.views.dninoexist.views import *
+from core.erp.views.dashboard.views import *
 
 app_name = 'app'
 
@@ -15,4 +16,7 @@ urlpatterns = [
     path('dninoexist/create/', DniNoExistCreateView.as_view(), name='dninoexist_create'),
     path('dninoexist/update/<int:pk>/', DniNoExistUpdateView.as_view(), name='dninoexist_update'),
     path('dninoexist/delete/<int:pk>/', DniNoExistDeleteView.as_view(), name='dninoexist_delete'),
+
+    # PANEL DASHBOARD
+    path('dashboard/', DashboardView.as_view(), name='dashboard'),
 ]

@@ -12,6 +12,7 @@ from core.erp.models import Padron
 from core.erp.forms import PadronModelForm, PadronDNIUpdateModelForm
 
 
+
 # Create your views here.
 # class PadronListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView):
 class PadronListView(LoginRequiredMixin, ListView):
@@ -143,3 +144,4 @@ class PadronDNIUpdateView(LoginRequiredMixin, CreateView):
         context['action'] = 'update_dni'
         context['list_url'] = self.success_url
         return context
+

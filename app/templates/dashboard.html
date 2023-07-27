@@ -1,0 +1,40 @@
+{% extends "body.html" %}
+
+{% load static %}
+
+{% block head_extra %}
+    <style>
+        img {
+            max-width: 100%;
+            display: block;
+            width: 60%;
+            margin: auto;
+        }
+    </style>
+
+{% endblock %}
+
+
+{% block data_body %}
+    <!-- Card Header -->
+    <div class="card-header">
+        <h3 class="card-title"><i class="fa-solid fa-list-ul"></i> {{ title }}</h3>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <!-- ./Card Header -->
+    <!-- Table -->
+    <div class="card-body">
+        <img src="{% static 'image/hero-bg.jpg' %}" alt="">
+    </div>
+    <!-- ./Table -->
+    <!-- Footer-Buttons -->
+    {% block footer_buttons %}
+
+    {% endblock %}
+    <!-- ./Footer-Buttons -->
+
+{% endblock %}

@@ -55,7 +55,7 @@ class DniNoExistCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('app:dninoexist_list')
     permission_required = 'add_dninoexist'
 
-    @method_decorator(csrf_exempt)
+    # @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
@@ -91,7 +91,7 @@ class DniNoExistUpdateView(LoginRequiredMixin, UpdateView):
     url_redirect = success_url
     permission_required = 'change_dninoexist'
 
-    @method_decorator(csrf_exempt)
+    # @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)
@@ -127,7 +127,7 @@ class DniNoExistDeleteView(LoginRequiredMixin, DeleteView):
     url_redirect = success_url
     permission_required = 'delete_dninoexist'
 
-    @method_decorator(csrf_exempt)
+    # @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)
