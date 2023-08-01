@@ -2,7 +2,6 @@ let dataproces = {
     items: {
         id: 0,
         voto: 0,
-        // action: '',
     },
 
 };
@@ -49,25 +48,22 @@ $(function () {
         document.getElementById('nombre').value = data.nombre;
         document.getElementById('domicilio').value = data.domicilio;
         document.getElementById('departamento').value = data.departamento;
-        document.getElementById('circuito').value = data.circuito;
+        document.getElementById('codigo_circuito').value = data.codigo_circuito;
         document.getElementById('nombre_circuito').value = data.nombre_circuito;
-        document.getElementById('mesa').value = data.nombre_circuito;
+        document.getElementById('mesa').value = data.mesa;
         document.getElementById('voto').value = data.voto;
-        if (parseInt(data.voto) === 1){
+        if (parseInt(data.voto) === 1) {
             document.getElementById('voto').style.display = 'none';
             document.getElementById('voto_invalid').style.display = 'none';
             document.getElementById('voto_valid').style.display = 'block';
             document.getElementById('voto_valid').value = data.voto;
-        }else if (parseInt(data.voto) === 0){
+        } else if (parseInt(data.voto) === 0) {
             document.getElementById('voto').style.display = 'none';
             document.getElementById('voto_valid').style.display = 'none';
             document.getElementById('voto_invalid').style.display = 'block';
             document.getElementById('voto_invalid').value = data.voto;
         }
         $(this).val('').trigger('change.select2');
-        //     if(!Number.isInteger(data.id)){
-        //         return false;
-        //     }
     });
 
     // Actualizar Voto desde la url dniupdate.html
@@ -93,8 +89,9 @@ $(function () {
         document.getElementById('nombre').value = '';
         document.getElementById('domicilio').value = '';
         document.getElementById('departamento').value = '';
-        document.getElementById('circuito').value = '';
+        document.getElementById('codigo_circuito').value = '';
         document.getElementById('nombre_circuito').value = '';
+        document.getElementById('mesa').value = '';
         document.getElementById('voto').value = '';
         document.getElementById('voto_invalid').value = '';
         document.getElementById('voto_valid').value = '';
@@ -104,3 +101,42 @@ $(function () {
     });
 
 });
+
+// const btnUpdateDNI = document.querySelector('.btnUpdateDNIKeyup')
+
+
+    // // Actualizar Voto desde la url dniupdate.html con el Enter del Teclado
+    // $(btnUpdateDNI.addEventListener).on('keyup', function (e) {
+    //     if (e.keyCode === 13) {
+    //         alert('Entro al eneter ==13')
+    //         e.preventDefault();
+    //         dataproces.items.id = $('input[name="id"]').val();
+    //         dataproces.items.voto = $('input[name="voto"]').val();
+    //         dataproces.items.action = 'update_dni'
+    //
+    //         let dataForm = new FormData();
+    //         dataForm.append('action', $('input[name="action"]').val());
+    //         dataForm.append('dataproces', JSON.stringify(dataproces.items));
+    //
+    //         $.ajax({
+    //             url: window.location.pathname,
+    //             type: 'POST',
+    //             data: dataForm,
+    //             datatype: 'json'
+    //         }).done(function (data) {
+    //             if (!data.hasOwnProperty('error')) {
+    //                 location.href = '{{ list_url }}';
+    //                 return false;
+    //             }
+    //             message_error(data.error);
+    //         }).fail(function (jqXHR, textStatus, errorThrawn) {
+    //             alert(textStatus + ' - ' + errorThrawn);
+    //         }).always(function (data) {
+    //
+    //         });
+    //
+    //         // alert_confirm(window.location.pathname, dataForm, 'Confirmar', '¿Estás seguro de realizar la siguiente Acción?', function () {
+    //         //     location.href = '/erp/padron/dniupdate/';
+    //         // });
+    //     }
+    // });

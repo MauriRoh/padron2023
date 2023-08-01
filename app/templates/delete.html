@@ -31,7 +31,7 @@
             <div class="alert text-white" style="background-color:var(--red02);">
                 <h5><strong><i class="fa-solid fa-triangle-exclamation"></i> Notificación!</strong></h5>
                 ¿Estás seguro de eliminar el registro: <strong> {{ object.id }} </strong>? Si confirma la eliminación,
-                no podrá acceder nuevamente a este.
+                no podrá acceder nuevamente a este Registro nuevamente.
             </div>
         </div>
         <div class="card-footer text-center">
@@ -49,25 +49,44 @@
     <script>
         $('form').on('submit', function (e) {
             e.preventDefault();
-            $.ajax({
-                url: window.location.pathname,
-                type: 'POST',
-                data: {},
-                datatype: 'json'
-            }).done(function (data) {
-                if (!data.hasOwnProperty('error')) {
-                    location.href = '{{ list_url }}';
-                    return false;
-                }
-                message_error(data.error);
-            }).fail(function (jqXHR, textStatus, errorThrawn) {
-                alert(textStatus + ' - ' + errorThrawn);
-            }).always(function (data) {
+            let parameters = new FormData(this);
+            alert_confirm(window.location.pathname, parameters, 'Notificación', '¿Estas seguro de eliminar el siguiente Registro?', function () {
+                Swal.fire({
+                    title: 'Alerta',
+                    text: 'Registro eliminado con Éxito',
+                    icon: 'success',
+                    timer: 2000,
+                    onClose: () => {
+                        location.href = '{{ list_url }}';
+                    }
+                }).then((result) => {
 
+                });
             });
-        })
+        });
     </script>
 
 {% endblock %}
 <!-- ./Data Body -->
+
+
+{#$('form').on('submit', function (e) {#}
+{#            e.preventDefault();#}
+{#            $.ajax({#}
+{#                url: window.location.pathname,#}
+{#                type: 'POST',#}
+{#                data: {},#}
+{#                datatype: 'json'#}
+{#            }).done(function (data) {#}
+{#                if (!data.hasOwnProperty('error')) {#}
+{#                    location.href = '{{ list_url }}';#}
+{#                    return false;#}
+{#                }#}
+{#                message_error(data.error);#}
+{#            }).fail(function (jqXHR, textStatus, errorThrawn) {#}
+{#                alert(textStatus + ' - ' + errorThrawn);#}
+{#            }).always(function (data) {#}
+{##}
+{#            });#}
+{#        });#}
 

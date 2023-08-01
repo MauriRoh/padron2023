@@ -57,15 +57,18 @@
                     <div class="input-group mb-3">
 
                         <select id="search_dni" name="dni" type="text" class="form-control select2-blue"
-                                aria-label="Ingrese DNI" aria-describedby="button-addon2" autofocus></select>
+                                aria-label="Ingrese DNI" aria-describedby="button-addon2"></select>
 
-                        <button style="background-color:var(--green05); Font-size: 12px" class="btn text-white btnUpdateDNI" type="submit"><i class="fa-solid fa-rotate"></i> Actualizar
+                        <button style="background-color:var(--green05); Font-size: 12px"
+                                class="btn text-white btnUpdateDNI btnUpdateDNIKeyup" type="submit"><i
+                                class="fa-solid fa-rotate" autofocus></i> Actualizar
                         </button>
 
                     </div>
 
                     <div class="form-outline">
-                        <input id="id" name="id" type="number" style="display:none;" class="form-control" aria-label="id"
+                        <input id="id" name="id" type="number" style="display:none;" class="form-control"
+                               aria-label="id"
                                aria-describedby="addon-wrapping">
                     </div>
                 </div>
@@ -107,7 +110,8 @@
                         <input id="voto" name="voto" type="text" class="form-control" readonly aria-label="address"
                                aria-describedby="addon-wrapping">
 
-                        <input id="voto_invalid" type="text" class="form-control is-invalid" readonly aria-label="address"
+                        <input id="voto_invalid" type="text" class="form-control is-invalid" readonly
+                               aria-label="address"
                                aria-describedby="addon-wrapping">
 
                         <input id="voto_valid" type="text" class="form-control is-valid" readonly aria-label="address"
@@ -130,15 +134,23 @@
                 </div>
                 <div class="col">
                     <div class="form-outline">
-                        <span class="form-label">Circuito</span>
-                        <input id="circuito" type="text" class="form-control" readonly aria-label="circuit"
+                        <span class="form-label">Nombre Circuito</span>
+                        <input id="nombre_circuito" type="text" class="form-control" readonly aria-label="circuit"
                                aria-describedby="addon-wrapping">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-outline">
-                        <span class="form-label">Nombre Circuito</span>
-                        <input id="nombre_circuito" type="text" class="form-control" readonly aria-label="circuit number"
+                        <span class="form-label">Código Circuito</span>
+                        <input id="codigo_circuito" type="text" class="form-control" readonly
+                               aria-label="circuit number"
+                               aria-describedby="addon-wrapping">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-outline">
+                        <span class="form-label">Mesa</span>
+                        <input id="mesa" type="text" class="form-control" readonly aria-label="circuit number"
                                aria-describedby="addon-wrapping">
                     </div>
                 </div>
@@ -151,9 +163,9 @@
                     class="btn text-white btn-rounded">
                 <i class="fa-solid fa-broom"></i> Limpar
             </button>
-{#            type="submit"#}
+            {#            type="submit"#}
             <button style="background-color:var(--green05); FONT-SIZE: 9pt"
-                    class="btn text-white btn-rounded btnUpdateDNI" type="submit">
+                    class="btn text-white btn-rounded btnUpdateDNI btnUpdateDNIKeyup" type="submit">
                 <i class="fa-solid fa-rotate"></i> Actualizar
             </button>
         </div>
@@ -161,9 +173,34 @@
     </form>
 
 
-    <script>
+    {% block javascript %}
+        <script>
 
-    </script>
+            // Obtener referencia al campo de autocompletado select2
+            const autocompleteSelect = $('#search_dni');
+
+            // Función para validar que solo se ingresen números
+            function validarNumeros(event) {
+                alert('Se hace click')
+                // Obtener el código de la tecla presionada
+                const charCode = (event.which) ? event.which : event.keyCode;
+
+                // Asegurarse de que solo se permitan números (0-9) o la tecla de retroceso (8)
+                if (charCode !== 8 && (charCode < 48 || charCode > 57)) {
+                    event.preventDefault();
+                    return false;
+                }
+
+                return true;
+            }
+
+            // Agregar el evento keypress al campo de autocompletado select2
+            autocompleteSelect.on('keypress', validarNumeros);
+
+
+        </script>
+        <script src="{% static 'padron/js/validations.js' %}"></script>
+    {% endblock %}
 
 {% endblock %}
 <!-- ./Data Body -->

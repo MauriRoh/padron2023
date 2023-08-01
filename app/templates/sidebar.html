@@ -21,7 +21,8 @@
                 {#            <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">#}
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ request.user.get_full_name }}</a>
+{#                <a href="#" class="d-block">{{ request.user.get_full_name }}</a>#}
+                <a href="#" class="d-block">{{ request.user.username }}</a>
             </div>
         </div>
 
@@ -60,7 +61,7 @@
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="{% url 'app:dninoexist_create' %}" class="nav-link">
+                            <a href="{% url 'app:dninoexist_list' %}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-id-card"></i>
                                 <p> DNI NO Encontrados</p>
                             </a>

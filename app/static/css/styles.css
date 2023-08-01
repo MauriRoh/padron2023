@@ -38,3 +38,14 @@
     /*El ancho de un elemento se altera si se le aplica un borde o un padding.*/
     box-sizing: border-box;
 }
+
+/***********************************************
+            Botones + y - del DataTable
+***********************************************/
+td.details-control {
+    background: url('../librery/datatables-1.10.22/images/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('../librery/datatables-1.10.22/images/details_close.png') no-repeat center center;
+}

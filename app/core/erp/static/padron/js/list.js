@@ -89,8 +89,11 @@ $(function () {
                 class: 'text-center',
                 orderable: false,
                 render: function (data, type, row) {
-
-                        return buttons ='<span style="background-color:var(--red06); FONT-SIZE: 12pt" class="badge text-white">' + row.voto + '</span> ';
+                        if (row.voto === 1){
+                            return buttons ='<span style="background-color:var(--green08); FONT-SIZE: 10pt" class="badge text-white btn-rounded btn-rounded">' + row.voto + '</span> ';
+                        }else{
+                            return buttons ='<span style="background-color:var(--red01); FONT-SIZE: 10pt" class="badge text-white btn-rounded">' + row.voto + '</span> ';
+                        }
 
                 }
             },

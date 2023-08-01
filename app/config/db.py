@@ -9,7 +9,8 @@ SQLITE = {
     }
 }
 
-POSTGRESQL = {
+# LOCALHOST
+POSTGRESQL_LOCALHOST = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'padrones',
@@ -17,18 +18,18 @@ POSTGRESQL = {
         'PASSWORD': 'Admin654',
         'HOST': 'localhost',
         'PORT': '5432',
-        'ATOMIC_REQUESTS': True
+        # 'ATOMIC_REQUESTS': True
     }
 }
-
-# POSTGRESQL = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'padrones_23',
-#         'USER': 'postgres',
-#         'PASSWORD': 'v0t4m32023*',
-#         'HOST': '10.3.0.23',
-#         'PORT': '5432',
-#         'ATOMIC_REQUESTS': True
-#     }
-# }
+# DEPLOY
+POSTGRESQL_DEPLOY = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'portalesdb',
+        'USER': 'postgres',
+        'PASSWORD': 'v0t4m32023*',
+        'HOST': 'localhost',
+        'PORT': 5432,
+        # 'ATOMIC_REQUESTS': True
+    }
+}

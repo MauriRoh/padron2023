@@ -1,17 +1,6 @@
 let dataproces = {
     items: {
-        id: 0,
-        // dni: '',
-        // apellido: '',
-        // nombre: '',
-        // // sexo: '',
-        // domicilio: '',
-        // // tipo_dni: '',
-        // departamento: '',
-        // circuito: '',
-        // nombre_circuito: '',
         voto: 0,
-        action: '',
     },
 
 };
@@ -21,16 +10,7 @@ $(function () {
 
     $('form').on('submit', function (e) {
         e.preventDefault();
-        dataproces.items.id = $('input[name="id"]').val();
-        // dataproces.items.dni = $('input[name="dni"]').val();
-        // dataproces.items.apellido = $('input[name="apellido"]').val();
-        // dataproces.items.nombre = $('input[name="nombre"]').val();
-        // // dataproces.items.sexo = $('input[name="sexo"]').val();
-        // dataproces.items.domicilio = $('input[name="domicilio"]').val();
-        // // dataproces.items.tipo_dni = $('input[name="tipo_dni"]').val();
-        // dataproces.items.departamento = $('input[name="departamento"]').val();
-        // dataproces.items.circuito = $('input[name="circuito"]').val();
-        // dataproces.items.nombre_circuito = $('input[name="nombre_circuito"]').val();
+
         dataproces.items.voto = $('input[name="voto"]').val();
 
         let dataForm = new FormData();
@@ -42,3 +22,27 @@ $(function () {
     });
 
 });
+
+
+
+
+        // dni: '',
+        // apellido: '',
+        // nombre: '',
+        // domicilio: '',
+        // departamento: '',
+        // nombre_circuito: '',
+        // codigo_circuito: '',
+        // mesa: 0,
+
+
+
+        // dataproces.items.id = $('input[name="id"]').val();
+        // dataproces.items.dni = $('input[name="dni"]').val();
+        // dataproces.items.apellido = $('input[name="apellido"]').val();
+        // dataproces.items.nombre = $('input[name="nombre"]').val();
+        // dataproces.items.domicilio = $('input[name="domicilio"]').val();
+        // dataproces.items.departamento = $('input[name="departamento"]').val();
+        // dataproces.items.nombre_circuito = $('input[name="nombre_circuito"]').val();
+        // dataproces.items.codigo_circuito = $('input[name="codigo_circuito"]').val();
+        // dataproces.items.mesa = $('input[name="mesa"]').val();

@@ -86,7 +86,6 @@ class PadronModelForm(ModelForm):
 
 
 
-
 class PadronDNIUpdateModelForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -160,6 +159,7 @@ class PadronDNIUpdateModelForm(ModelForm):
         except Exception as e:
             data['error'] = str(e)
         return data
+
 
 
 class DniNoExistModelForm(ModelForm):

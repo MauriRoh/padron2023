@@ -45,6 +45,7 @@ class DniNoExistListView(LoginRequiredMixin, ListView):
         context['padron_url'] = reverse_lazy('app:padron_list')
         context['dni_no_url'] = reverse_lazy('app:dninoexist_list')
         context['padron_dni_update'] = reverse_lazy('app:padron_dniupdate')
+        context['padron_update'] = reverse_lazy('app:padron_dniupdate')
         return context
 
 
@@ -127,7 +128,6 @@ class DniNoExistDeleteView(LoginRequiredMixin, DeleteView):
     url_redirect = success_url
     permission_required = 'delete_dninoexist'
 
-    # @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)
@@ -142,10 +142,10 @@ class DniNoExistDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Eliminar DNI No Encontrado'
+        context['title'] = 'Eliminar Registro'
         context['padron_url'] = reverse_lazy('app:padron_list')
         context['dni_no_url'] = reverse_lazy('app:dninoexist_list')
         context['padron_dni_update'] = reverse_lazy('app:padron_dniupdate')
-        context['action'] = 'delete'
+        # context['action'] = 'delete'
         context['list_url'] = self.success_url
         return context

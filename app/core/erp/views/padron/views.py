@@ -49,6 +49,7 @@ class PadronListView(LoginRequiredMixin, ListView):
         context['padron_url'] = reverse_lazy('app:padron_list')
         context['dni_no_url'] = reverse_lazy('app:dninoexist_list')
         context['padron_dni_update'] = reverse_lazy('app:padron_dniupdate')
+        context['padron_update'] = reverse_lazy('app:padron_dniupdate')
         return context
 
 
@@ -71,10 +72,7 @@ class PadronUpdateView(LoginRequiredMixin, UpdateView):
             action = request.POST['action']
             if action == 'update':
                 dataproces = json.loads(request.POST['dataproces'])
-                # votante = self.get_object()
-                # votante.id = int(dataproces['id'])
-                for i in Padron.objects.filter(pk=int(dataproces['id'])):
-                # for i in Padron.objects.filter(pk=int(request.POST['id'])):
+                for i in Padron.objects.filter(pk=int(kwargs['pk'])):
                     if int(dataproces['voto']) == 0:
                         i.voto = 1
                     else:
