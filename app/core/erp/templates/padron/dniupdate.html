@@ -23,7 +23,7 @@
 {% block data_body %}
     <!-- Card Header -->
     <form method="POST" action="." id="FormCreate" enctype="multipart/form-data">
-        <div class="card-header">
+        <div class="card-header card-primary card-outline">
             <h3 class="card-title">
                 <i class="fa-solid fa-rotate"></i> {{ title }}
             </h3>
@@ -171,36 +171,6 @@
         </div>
         <!-- ./Card Footer-Buttons -->
     </form>
-
-
-    {% block javascript %}
-        <script>
-
-            // Obtener referencia al campo de autocompletado select2
-            const autocompleteSelect = $('#search_dni');
-
-            // Función para validar que solo se ingresen números
-            function validarNumeros(event) {
-                alert('Se hace click')
-                // Obtener el código de la tecla presionada
-                const charCode = (event.which) ? event.which : event.keyCode;
-
-                // Asegurarse de que solo se permitan números (0-9) o la tecla de retroceso (8)
-                if (charCode !== 8 && (charCode < 48 || charCode > 57)) {
-                    event.preventDefault();
-                    return false;
-                }
-
-                return true;
-            }
-
-            // Agregar el evento keypress al campo de autocompletado select2
-            autocompleteSelect.on('keypress', validarNumeros);
-
-
-        </script>
-        <script src="{% static 'padron/js/validations.js' %}"></script>
-    {% endblock %}
 
 {% endblock %}
 <!-- ./Data Body -->

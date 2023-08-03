@@ -18,7 +18,6 @@ POSTGRESQL_LOCALHOST = {
         'PASSWORD': 'Admin654',
         'HOST': 'localhost',
         'PORT': '5432',
-        # 'ATOMIC_REQUESTS': True
     }
 }
 # DEPLOY
@@ -30,6 +29,5 @@ POSTGRESQL_DEPLOY = {
         'PASSWORD': 'v0t4m32023*',
         'HOST': 'localhost',
         'PORT': 5432,
-        # 'ATOMIC_REQUESTS': True
     }
 }
