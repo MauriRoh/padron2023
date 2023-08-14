@@ -29,6 +29,18 @@
     <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
     <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
 
+    <!-- Fontawesome -->
+    {#    <script src="https://kit.fontawesome.com/606bbbad74.js" crossorigin="anonymous"></script>#}
+    <link href="{% static 'librery/fontawesome-free-6.4.0/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'librery/fontawesome-free-6.4.0/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'librery/fontawesome-free-6.4.0/css/solid.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'librery/fontawesome-free-6.4.0/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <script src="{% static 'librery/fontawesome-free-6.4.0/js/fontawesome.js' %}"></script>
+    <script src="{% static 'librery/fontawesome-free-6.4.0/js/solid.js' %}"></script>
+    <script src="{% static 'librery/fontawesome-free-6.4.0/js/brands.js' %}"></script>
+    <script src="{% static 'librery/fontawesome-free-6.4.0/js/all.min.js' %}"></script>
+    <!-- ./Fontawesome -->
+
     <!-- Template Main CSS File -->
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
 
@@ -58,11 +70,21 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a href="{% url 'index' %}" class="active">Home</a></li>
-                <li><a href="{% url 'app:padron_list' %}">Lista Padron</a></li>
-                <li><a href="{% url 'app:padron_dniupdate' %}">Votó</a></li>
-                <li><a href="{% url 'app:dninoexist_list' %}">DNI NO Encontrado</a></li>
-                <li><a href="{% url 'access:logout' %}">Logout</a></li>
+{#                <li><a href="{% url 'index' %}" class="active">Home</a></li>#}
+{#                <li><a href="{% url 'app:padron_list' %}">Padron</a></li>#}
+{#                <li><a href="{% url 'app:padron_dniupdate' %}">Votó ?</a></li>#}
+{#                <li><a href="{% url 'app:padron_dniupdate' %}">Mesa</a></li>#}
+{#                <li><a href="{% url 'app:dninoexist_list' %}">DNI NO Encontrado</a></li>#}
+{#                <li><a href="{% url 'access:logout' %}">Logout</a></li>#}
+
+                <li><a href="{% url 'index' %}" class="active"><i class="fa-solid fa-bars"></i></a></li>
+                <li><a href="{% url 'app:dashboard' %}" class="active"><i class="fa-solid fa-house-flag"></i></a></li>
+                <li><a href="{% url 'app:padron_list' %}"><i class="fa-solid fa-rectangle-list"></i></a></li>
+                <li><a href="{% url 'app:padron_dniupdate' %}"><i class="fa-solid fa-person-circle-question"></i></a></li>
+                <li><a href="{% url 'app:padron_tableupdate' %}"><i class="fa-solid fa-chalkboard-user"></i></a></li>
+                <li><a href="{% url 'app:dninoexist_list' %}"><i class="fa-solid fa-id-card"></i></a></li>
+                <li><a href="{% url 'access:logout' %}"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i></a></li>
+
             </ul>
         </nav><!-- .navbar -->
 
@@ -81,7 +103,7 @@
                     <p>#Elecciones - #TuEresProtagonista".</p>
                 </blockquote>
                 <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-                    <a href="{% url 'access:login' %}" class="btn-get-started">Ingresar</a>
+                    <a href="{% url 'access:login' %}" class="btn-get-started">Ingresar <i class="fa-solid fa-right-to-bracket"></i></a>
                 </div>
 
             </div>

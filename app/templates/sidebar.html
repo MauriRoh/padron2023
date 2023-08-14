@@ -6,7 +6,8 @@
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
         {#  <a href="../../index3.html" class="brand-link">#}
-        <img src="{% static 'image/voto.png' %}" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="{% static 'image/voto.png' %}" alt="Logo" class="brand-image img-circle elevation-3"
+             style="opacity: .8">
         {#    <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">#}
         <span class="brand-text font-weight-light">Elecciones</span>
     </a>
@@ -16,56 +17,64 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-{#                <img src="#" class="img-circle elevation-2" alt="User Image">#}
+                {#                <img src="#" class="img-circle elevation-2" alt="User Image">#}
                 <img src="{{ request.user.get_image }}" class="img-circle elevation-2" alt="User Image">
                 {#            <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">#}
             </div>
             <div class="info">
-{#                <a href="#" class="d-block">{{ request.user.get_full_name }}</a>#}
+                {#                <a href="#" class="d-block">{{ request.user.get_full_name }}</a>#}
                 <a href="#" class="d-block">{{ request.user.username }}</a>
             </div>
         </div>
 
         <!-- SidebarSearch Form -->
-{#        <div class="form-inline">#}
-{#            <div class="input-group" data-widget="sidebar-search">#}
-{#                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">#}
-{#                <div class="input-group-append">#}
-{#                    <button class="btn btn-sidebar">#}
-{#                        <i class="fas fa-search fa-fw"></i>#}
-{#                    </button>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
+        {#        <div class="form-inline">#}
+        {#            <div class="input-group" data-widget="sidebar-search">#}
+        {#                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">#}
+        {#                <div class="input-group-append">#}
+        {#                    <button class="btn btn-sidebar">#}
+        {#                        <i class="fas fa-search fa-fw"></i>#}
+        {#                    </button>#}
+        {#                </div>#}
+        {#            </div>#}
+        {#        </div>#}
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column nav-legacy nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
+            <ul class="nav nav-pills nav-sidebar flex-column nav-legacy nav-child-indent" data-widget="treeview"
+                role="menu" data-accordion="false">
 
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
 
-                      <i class="nav-icon fa-solid fa-building-flag"></i><p> Acciones <i class="right fa-solid fa-angle-left"></i></p>
+                        <i class="nav-icon fa-solid fa-building-flag"></i>
+                        <p> Acciones <i class="right fa-solid fa-angle-left"></i></p>
                     </a>
                     <ul class="nav nav-treeview" style="display: none;">
-                          <li class="nav-item">
+                        <li class="nav-item">
                             <a href="{% url 'app:padron_list' %}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-rectangle-list"></i>
                                 <p> Padrón</p>
                             </a>
-                          </li>
-                          <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
                             <a href="{% url 'app:padron_dniupdate' %}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-person-circle-question"></i>
-                                <p> Votó</p>
+                                <p> Votó ?</p>
                             </a>
-                          </li>
-                          <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'app:padron_tableupdate' %}" class="nav-link">
+                                <i class="nav-icon fa-solid fa-chalkboard-user"></i>
+                                <p> Mesa</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{% url 'app:dninoexist_list' %}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-id-card"></i>
                                 <p> DNI NO Encontrados</p>
                             </a>
-                          </li>
+                        </li>
 
                     </ul>
                 </li>

@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView
 from core.erp.models import Padron
-from core.erp.forms import PadronModelForm, PadronDNIUpdateModelForm
+from core.erp.forms import PadronModelForm, PadronDNIUpdateModelForm, PadronMesaDNIUpdateModelForm
 
 
 
@@ -105,7 +105,6 @@ class PadronDNIUpdateView(LoginRequiredMixin, CreateView):
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
-        # self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
@@ -143,3 +142,51 @@ class PadronDNIUpdateView(LoginRequiredMixin, CreateView):
         context['list_url'] = self.success_url
         return context
 
+
+class PadronMesaDNIUpdateView(LoginRequiredMixin, CreateView):
+    model = Padron
+    form_class = PadronMesaDNIUpdateModelForm
+    template_name = 'padron/mesaupdate.html'
+    success_url = reverse_lazy('app:padron_tableupdate')
+    url_redirect = success_url
+    permission_required = 'change_padron'
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        data = {}
+        try:
+            action = request.POST['action']
+            if action == 'search_mesa':
+                data = []
+                mesa = Padron.objects.filter(mesa__exact=request.POST['term'])
+                for i in mesa:
+                    item = i.toJSON()
+                    item['value'] = i.mesa
+                    data.append(item)
+
+            elif action == 'update_dni':
+                dataproces = json.loads(request.POST['dataproces'])
+                for i in Padron.objects.filter(pk=int(dataproces['id'])):
+                    if int(dataproces['voto']) == 0:
+                        i.voto = 1
+                    else:
+                        i.voto = 0
+                    i.save()
+            else:
+                data['error'] = 'No se pudo realizar la solicitud'
+        except Exception as e:
+            data['error'] = str(e)
+        return JsonResponse(data, safe=False)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Editar Mesa'
+        context['padron_url'] = reverse_lazy('app:padron_list')
+        context['dni_no_url'] = reverse_lazy('app:dninoexist_list')
+        context['padron_dni_update'] = reverse_lazy('app:padron_dniupdate')
+        context['action'] = 'update_dni'
+        context['list_url'] = self.success_url
+        return context

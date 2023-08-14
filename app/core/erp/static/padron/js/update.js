@@ -22,27 +22,3 @@ $(function () {
     });
 
 });
-
-
-
-
-        // dni: '',
-        // apellido: '',
-        // nombre: '',
-        // domicilio: '',
-        // departamento: '',
-        // nombre_circuito: '',
-        // codigo_circuito: '',
-        // mesa: 0,
-
-
-
-        // dataproces.items.id = $('input[name="id"]').val();
-        // dataproces.items.dni = $('input[name="dni"]').val();
-        // dataproces.items.apellido = $('input[name="apellido"]').val();
-        // dataproces.items.nombre = $('input[name="nombre"]').val();
-        // dataproces.items.domicilio = $('input[name="domicilio"]').val();
-        // dataproces.items.departamento = $('input[name="departamento"]').val();
-        // dataproces.items.nombre_circuito = $('input[name="nombre_circuito"]').val();
-        // dataproces.items.codigo_circuito = $('input[name="codigo_circuito"]').val();
-        // dataproces.items.mesa = $('input[name="mesa"]').val();

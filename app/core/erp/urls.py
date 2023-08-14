@@ -10,6 +10,7 @@ urlpatterns = [
     path('padron/list/', PadronListView.as_view(), name='padron_list'),
     path('padron/update/<int:pk>/', PadronUpdateView.as_view(), name='padron_update'),
     path('padron/dniupdate/', PadronDNIUpdateView.as_view(), name='padron_dniupdate'),
+    path('padron/mesaupdate/', PadronMesaDNIUpdateView.as_view(), name='padron_tableupdate'),
 
     # DNI no Existen
     path('dninoexist/list/', DniNoExistListView.as_view(), name='dninoexist_list'),
