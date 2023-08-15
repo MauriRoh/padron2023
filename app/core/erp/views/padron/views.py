@@ -111,13 +111,19 @@ class PadronDNIUpdateView(LoginRequiredMixin, CreateView):
         data = {}
         try:
             action = request.POST['action']
-            if action == 'search_dni':
+            # if action == 'search_dni':
+            #     data = []
+            #     for i in Padron.objects.filter(dni__icontains=request.POST['term']):
+            #         item = i.toJSON()
+            #         item['text'] = i.dni
+            #         data.append(item)
+            if action == 'search':
                 data = []
-                for i in Padron.objects.filter(dni__icontains=request.POST['term']):
+                dni = int(request.POST['term'])
+                for i in Padron.objects.filter(dni__exact=dni):
                     item = i.toJSON()
                     item['text'] = i.dni
                     data.append(item)
-                    
             elif action == 'update_dni':
                 dataproces = json.loads(request.POST['dataproces'])
                 for i in Padron.objects.filter(pk=int(dataproces['id'])):
@@ -159,18 +165,17 @@ class PadronMesaDNIUpdateView(LoginRequiredMixin, CreateView):
         data = {}
         try:
             action = request.POST['action']
-            if action == 'search_mesa':
+            if action == 'search':
                 data = []
-                mesa = Padron.objects.filter(mesa__exact=request.POST['term'])
-                for i in mesa:
+                mesa = int(request.POST['term'])
+                for i in Padron.objects.filter(mesa__exact=mesa):
                     item = i.toJSON()
-                    item['value'] = i.mesa
+                    item['text'] = i.mesa
                     data.append(item)
-
             elif action == 'update_dni':
                 dataproces = json.loads(request.POST['dataproces'])
                 for i in Padron.objects.filter(pk=int(dataproces['id'])):
-                    if int(dataproces['voto']) == 0:
+                    if int(dataproces['value']) == 0:
                         i.voto = 1
                     else:
                         i.voto = 0

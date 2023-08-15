@@ -56,12 +56,21 @@
                 <div class="col-lg-3">
                     <div class="input-group mb-3">
 
-                        <select id="search_dni" name="dni" type="text" class="form-control select2-blue"
-                                aria-label="Ingrese DNI" aria-describedby="button-addon2"></select>
+                        {#                        <select id="search_dni" name="dni" type="text" class="form-control select2-blue"#}
+                        {#                                aria-label="Ingrese DNI" aria-describedby="button-addon2"></select>#}
+                        {##}
+                        {#                        <button style="background-color:var(--green05); Font-size: 12px"#}
+                        {#                                class="btn text-white btnUpdateDNI btnUpdateDNIKeyup" type="submit"><i#}
+                        {#                                class="fa-solid fa-rotate" autofocus></i> Actualizar#}
+                        {#                        </button>#}
 
-                        <button style="background-color:var(--green05); Font-size: 12px"
-                                class="btn text-white btnUpdateDNI btnUpdateDNIKeyup" type="submit"><i
-                                class="fa-solid fa-rotate" autofocus></i> Actualizar
+                        <input id="id_search" name="search" type="text" class="form-control select2-blue"
+                               placeholder="Ingrese N° de DNI..."
+                               aria-label="search_product" aria-describedby="button-addon2" autocomplete="off">
+                        <button style="background-color:var(--blue03); Font-size: 12px"
+                                class="btn text-white btnSearchProduct" id="id_btnSearchProduct"
+                                name="btnSearchProduct">
+                            <i class="fa-solid fa-magnifying-glass"></i> Buscar
                         </button>
 
                     </div>
@@ -171,6 +180,11 @@
         </div>
         <!-- ./Card Footer-Buttons -->
     </form>
+
+
+    <{% block javascript %}
+        <script src="{% static 'padron/js/validations.js' %}"></script>
+    {% endblock %}
 
 {% endblock %}
 <!-- ./Data Body -->
