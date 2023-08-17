@@ -66,8 +66,8 @@
 
                         <input id="id_search" name="search" type="text" class="form-control select2-blue"
                                placeholder="Ingrese N° de DNI..."
-                               aria-label="search_product" aria-describedby="button-addon2" autocomplete="off">
-                        <button style="background-color:var(--blue03); Font-size: 12px"
+                               aria-label="search_product" aria-describedby="button-addon2" autocomplete="off" minlength="5" maxlength="8">
+                        <button style="background-color:var(--blue02); Font-size: 12px"
                                 class="btn text-white btnSearchProduct" id="id_btnSearchProduct"
                                 name="btnSearchProduct">
                             <i class="fa-solid fa-magnifying-glass"></i> Buscar
@@ -168,15 +168,18 @@
         <!-- ./Card Body -->
         <!-- Card Footer-Buttons -->
         <div class="card-footer text-center">
-            <button type="button" id="cleaninputdni" style="background-color:var(--orange01); FONT-SIZE: 9pt"
-                    class="btn text-white btn-rounded">
-                <i class="fa-solid fa-trash-can"></i> Limpar
-            </button>
-            {#            type="submit"#}
             <button style="background-color:var(--green05); FONT-SIZE: 9pt"
                     class="btn text-white btn-rounded btnUpdateDNI btnUpdateDNIKeyup" type="submit">
                 <i class="fa-solid fa-rotate"></i> Actualizar
             </button>
+            <button type="button" id="cleaninputdni" style="background-color:var(--orange01); FONT-SIZE: 9pt"
+                    class="btn text-white btn-rounded">
+                <i class="fa-solid fa-trash-can"></i> Limpar
+            </button>
+            <a href="{% url 'app:padron_list' %}" style="background-color:var(--red06); FONT-SIZE: 9pt"
+               class="btn text-white btn-rounded">
+                <i class="fa-solid fa-xmark"></i> Cancelar
+            </a>
         </div>
         <!-- ./Card Footer-Buttons -->
     </form>

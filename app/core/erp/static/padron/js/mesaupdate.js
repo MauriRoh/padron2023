@@ -1,19 +1,11 @@
 let dataproces = {
     items: {
-        id: 0,
-        // dni: 0,
-        // apellido: '',
-        // nombre: '',
-        // domicilio: '',
-        // departamento: '',
-        // nombre_circuito: '',
-        // codigo_circuito: '',
-        // mesa: 0,
-        value: 0,
-
+        mesa: 0,
     },
-
 };
+
+let checkVoto = [];
+let flagChecked = 0;
 
 
 $(function () {
@@ -30,13 +22,6 @@ $(function () {
             },
             dataType: 'json',
         }).done(function (data) {
-            // for (i in data) {
-            //     console.log(data[i]['dni'])
-            //     console.log(data[i]['apellido'])
-            //     console.log(data[i]['nombre'])
-            //     console.log(data[i]['mesa'])
-            //     console.log(data[i]['voto'])
-            // }
             data.forEach(i => {
                 template += `
                     <tr>
@@ -46,7 +31,6 @@ $(function () {
                             ` : `
                                 <input name="checkboxMesa" class="form-check-input text-center" type="checkbox" value="${i.voto}" id="${i.id}">
                             `}
-                            ${i.id}
                         </td>
                         <td>${i.dni}</td>
                         <td>${i.apellido}</td>
@@ -67,37 +51,84 @@ $(function () {
         });
     });
 
-    $('form').on('submit', function (e) {
-        e.preventDefault();
-        let tbl_Padron = document.getElementById('tblPadron');
-        //let tbl_Padron = $('#tblPadron').val();
-        console.log('Tabla tbl_Padron')
-        console.log(tbl_Padron.rows)
-        // for (let i=0, row; tbl_Padron.row[i]; i++){
-        //     console.log(row);
-        // }
+    document.addEventListener('DOMContentLoaded', function () {
+        checkVoto = [];
+        const checkboxes = document.querySelectorAll('input[name="checkboxMesa"]')
+        checkboxes.forEach(i => {
+            i.addEventListener('change', function () {
+                const rowId = this.id;
+                const isChecked = this.checked;
 
-        // tblPadron.forEach( i => {
-        //     console.log(i)
-        // })
+                if (isChecked === true) {
+                    flagChecked = 1;
+                } else {
+                    flagChecked = 0;
+                }
 
-        // for (let i=0; i < form.length; i++){
-        //     console.log(form[i])
-        // }
+                const mesa = {
+                    id: rowId,
+                    voto: flagChecked
+                }
+                checkVoto.push(mesa);
+            });
+        });
 
-        // dataproces.items.id = $('input[id=""]').val();
-        // dataproces.items.value = $('input[name="checkboxMesa"]').val();
-        //
-        // let dataForm = new FormData();
-        // dataForm.append('action', $('input[name="action"]').val());
-        // dataForm.append('dataproces', JSON.stringify(dataproces.items));
-        // alert_confirm(window.location.pathname, dataForm, 'Confirmar', '¿Estás seguro de realizar la siguiente Acción?', function () {
-        //     location.href = '/erp/padron/mesaupdate/';
-        // });
     });
 
+    $('form').on('submit', function (e) {
+        e.preventDefault();
+
+        let tablePadron = document.getElementById('tblPadron');
+        let rows = tablePadron.getElementsByTagName('tr');
+        // let mesa = 0;
+
+        const rowTr = rows[1];
+        const cellMesa = rowTr.getElementsByTagName('td');
+        let mesa = cellMesa[8].textContent;
+
+        // for (let i = 1; i < rows.length; i++) {
+        //     const rowTr = rows[i];
+        //     const cellMesa = rowTr.getElementsByTagName('td');
+        //     mesa = cellMesa[8].textContent;
+        //
+        // }
+
+        const input_check = document.querySelectorAll('input[name="checkboxMesa"]')
+        input_check.forEach(i => {
+
+            if (i.checked) {
+                flagChecked = 1;
+            } else {
+                flagChecked = 0;
+            }
+            const checkedVoto = {
+                id: parseInt(i.id),
+                voto: flagChecked
+            }
+
+            checkVoto.push(checkedVoto);
+        });
+
+        dataproces.items.mesa = mesa
+        dataproces.items.checkVoto = checkVoto
+        dataproces.items.action = 'update_dni'
+
+        // console.log('Valores del Data Proces')
+        // console.log(dataproces)
+
+        let dataForm = new FormData();
+        dataForm.append('action', $('input[name="action"]').val());
+        dataForm.append('dataproces', JSON.stringify(dataproces.items));
+        alert_confirm(window.location.pathname, dataForm, 'Confirmar', '¿Estás seguro de realizar la siguiente Acción?', function () {
+            location.href = '/erp/padron/mesaupdate/';
+        });
+
+    });
+
+    // Limpia los Campos
+    $('.btnRemoveAll').on('click', function () {
+        document.getElementById('id_search').value = '';
+        document.getElementById('tableAllEvents').innerHTML = '';
+    });
 
 });
-
-
-// <td><input className="form-check-input text-center" type="checkbox" value="" id="${i.id}">${i.voto}</td>

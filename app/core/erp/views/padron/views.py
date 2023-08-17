@@ -174,12 +174,11 @@ class PadronMesaDNIUpdateView(LoginRequiredMixin, CreateView):
                     data.append(item)
             elif action == 'update_dni':
                 dataproces = json.loads(request.POST['dataproces'])
-                for i in Padron.objects.filter(pk=int(dataproces['id'])):
-                    if int(dataproces['value']) == 0:
-                        i.voto = 1
-                    else:
-                        i.voto = 0
-                    i.save()
+                for i in dataproces['checkVoto']:
+                    newVoto = Padron.objects.get(pk=int(i['id']))
+                    newVoto.voto = int(i['voto'])
+                    newVoto.save()
+            
             else:
                 data['error'] = 'No se pudo realizar la solicitud'
         except Exception as e:
@@ -191,7 +190,6 @@ class PadronMesaDNIUpdateView(LoginRequiredMixin, CreateView):
         context['title'] = 'Editar Mesa'
         context['padron_url'] = reverse_lazy('app:padron_list')
         context['dni_no_url'] = reverse_lazy('app:dninoexist_list')
-        context['padron_dni_update'] = reverse_lazy('app:padron_dniupdate')
         context['action'] = 'update_dni'
         context['list_url'] = self.success_url
         return context

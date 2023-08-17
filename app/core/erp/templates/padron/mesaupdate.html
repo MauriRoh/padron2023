@@ -12,16 +12,6 @@
     <script src="{% static 'librery/datatables-1.10.22/plugins/js/dataTables.responsive.min.js' %}"></script>
     <script src="{% static 'librery/datatables-1.10.22/plugins/js/responsive.bootstrap4.min.js' %}"></script>
     <!-- Head List -->
-    <!-- JQuery UI -->
-    <link href="{% static 'librery/jquery-ui-1.13.2/jquery-ui.min.css' %}" rel="stylesheet">
-    <script src="{% static 'librery/jquery-ui-1.13.2/jquery-ui.min.js' %}"></script>
-    <script src="{% static 'librery/datatables-1.10.22/plugins/jszip-2.5.0/jszip.min.js' %}"
-            type="text/javascript"></script>
-    {#    <script src="{% static 'librery/datatables-1.10.22/plugins/pdfmake-0.1.36/pdfmake.min.js' %}"#}
-    {#            type="text/javascript"></script>#}
-    {#    <script src="{% static 'librery/datatables-1.10.22/plugins/pdfmake-0.1.36/vfs_fonts.js' %}"#}
-    {#            type="text/javascript"></script>#}
-    <!-- ./JQuery UI -->
     <!-- JavaScript extra -->
     <script src="{% static 'padron/js/mesaupdate.js' %}"></script>
     <!-- JavaScript extra -->
@@ -67,21 +57,10 @@
                 <div class="col-lg-3">
                     <div class="input-group mb-3">
 
-{#                        <input type="text" class="form-control select2-blue"#}
-{#                               placeholder="Ingrese N° de Mesa" name="search" id="search">#}
-                        {#                        <select id="search_dni" name="dni" type="text"#}
-                        {#                                aria-label="Ingrese DNI" aria-describedby="button-addon2"></select>#}
-{##}
-{#                        <button type="button" id="btnRemoveInputMesa" name="btnRemoveInputMesa"#}
-{#                                style="background-color:var(--blue03); FONT-SIZE: 9pt"#}
-{#                                class="btn text-white btn-rounded">#}
-{#                            <i class="fa-solid fa-magnifying-glass"></i> Buscar#}
-{#                        </button>#}
-
                         <div class="input-group mb-3">
                             <input id="id_search" name="search" type="text" class="form-control select2-blue" placeholder="Ingrese N° de Mesa..."
-                                   aria-label="search_product" aria-describedby="button-addon2" autocomplete="off">
-                            <button style="background-color:var(--blue03); Font-size: 12px"
+                                   aria-label="search_product" aria-describedby="button-addon2" autocomplete="off" minlength="1" maxlength="4">
+                            <button style="background-color:var(--blue02); Font-size: 12px"
                                 class="btn text-white btnSearchProduct" id="id_btnSearchProduct" name="btnSearchProduct">
                                 <i class="fa-solid fa-magnifying-glass"></i> Buscar
                             </button>
@@ -99,10 +78,10 @@
                 <div class="col-lg-9"></div>
             </div>
 
-{#            <button type="button" style="background-color:var(--orange01); Font-size: 12px"#}
-{#                    class="btn text-white btn-rounded btnRemoveAll">#}
-{#                <i class="fa-solid fa-trash-can"></i> Limpiar Tabla#}
-{#            </button>#}
+            <button type="button" style="background-color:var(--orange01); Font-size: 12px"
+                    class="btn text-white btn-rounded btnRemoveAll">
+                <i class="fa-solid fa-trash-can"></i> Limpiar
+            </button>
             <hr>
 
             <div class="row">
@@ -132,18 +111,27 @@
 
         <!-- Card Footer-Buttons -->
         <div class="card-footer text-center">
-            <button type="button" id="cleaninputdni" style="background-color:var(--orange01); FONT-SIZE: 9pt"
-                    class="btn text-white btn-rounded">
-                <i class="fa-solid fa-trash-can"></i> Limpar
-            </button>
-            {#            type="submit"#}
             <button style="background-color:var(--green05); FONT-SIZE: 9pt"
                     class="btn text-white btn-rounded btnUpdateDNI btnUpdateDNIKeyup" type="submit">
                 <i class="fa-solid fa-rotate"></i> Actualizar
             </button>
+            <button type="button" id="cleanAll" style="background-color:var(--orange01); FONT-SIZE: 9pt"
+                    class="btn text-white btn-rounded btnRemoveAll">
+                <i class="fa-solid fa-trash-can"></i> Limpar
+            </button>
+            <a href="{% url 'app:padron_list' %}" style="background-color:var(--red06); FONT-SIZE: 9pt"
+               class="btn text-white btn-rounded">
+                <i class="fa-solid fa-xmark"></i> Cancelar
+            </a>
         </div>
         <!-- ./Card Footer-Buttons -->
     </form>
+
+    <!-- JavaScript -->
+    {% block javascript %}
+        <script src="{% static 'padron/js/validations.js' %}"></script>
+    {% endblock %}
+    <!-- ./JavaScript -->
 
 {% endblock %}
 <!-- ./Data Body -->

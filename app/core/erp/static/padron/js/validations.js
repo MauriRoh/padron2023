@@ -73,7 +73,7 @@ $('input[name="nombre"]').bind('keypress', function(event) {
     }
 });
 
-$('input[name="search"]').bind('keypress', function(event) {
+$('input[id="id_search"]').bind('keypress', function(event) {
 
     let regex = new RegExp("[0-9]");
     let key = String.fromCharCode(!event.charCode ? event.which : event.charCode);

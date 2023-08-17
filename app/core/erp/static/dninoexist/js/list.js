@@ -28,6 +28,18 @@ $(function () {
                 "colvis": "Visibilidad"
             }
         },
+        // Buttons DataTable
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                text:'<i class="fa-solid fa-file-excel"></i>',
+                titleAttr: 'Excel',
+                className: 'btn btn-success btn-xs',
+                // style: 'FONT-SIZE: 12pt',
+                // fontSize: 12,
+            },
+        ],
         scrollX: true,
         paging: true,
         responsive: true,

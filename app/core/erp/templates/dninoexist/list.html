@@ -3,6 +3,15 @@
 {% load static %}
 <!-- Head List -->
 {% block head_List %}
+    <!-- DataTable - Botones -->
+    <link rel="stylesheet" href="{% static 'librery/datatables-1.10.22/plugins/buttons-1.6.1/css/buttons.bootstrap.min.css' %}"/>
+    <script src="{% static 'librery/datatables-1.10.22/plugins/buttons-1.6.1/js/dataTables.buttons.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'librery/datatables-1.10.22/plugins/jszip-2.5.0/jszip.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'librery/datatables-1.10.22/plugins/pdfmake-0.1.36/pdfmake.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'librery/datatables-1.10.22/plugins/pdfmake-0.1.36/vfs_fonts.js' %}" type="text/javascript"></script>
+    <script src="{% static 'librery/datatables-1.10.22/plugins/buttons-1.6.1/js/buttons.html5.min.js' %}" type="text/javascript"></script>
+    <!-- ./DataTable - Botones -->
+
     <script src="{% static 'dninoexist/js/list.js' %}"></script>
 {% endblock %}
 <!-- ./Head List -->
