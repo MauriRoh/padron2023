@@ -51,8 +51,6 @@ tr.shown td.details-control {
     background: url('../librery/datatables-1.10.22/images/details_close.png') no-repeat center center;
 }
 
-
-
 .dashboard-card-body{
     padding: 0px;
     margin: 0px;
@@ -66,7 +64,6 @@ tr.shown td.details-control {
     background-size: cover;
     /*height: 750px;*/
 }
-
 
 /*.container{*/
 /*    background-color: var(--grey01);*/
