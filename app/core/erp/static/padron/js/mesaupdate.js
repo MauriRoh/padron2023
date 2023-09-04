@@ -25,7 +25,7 @@ $(function () {
             data.forEach(i => {
                 template += `
                     ${i.voto === 1 ? `
-                        <tr class="table-success trMesaChecked" id="trId_${i.id}" onclick='rowTablePadron("trId_${i.id}")'>
+                        <tr class="table-success trMesaChecked" id="trId_${i.id}" onclick='rowTablePadron("trId_${i.id}", "${i.id}")'>
                             <td class="text-center" id="checkboxId_${i.id}">
                                 <input name="checkboxMesa" class="form-check-input text-center" type="checkbox" checked value="${i.voto}" id="${i.id}">
                             </td>
@@ -39,7 +39,7 @@ $(function () {
                             <td>${i.mesa}</td>
                         </tr>
                     ` : `
-                        <tr class="table-danger trMesaChecked" id="trId_${i.id}" onclick='rowTablePadron("trId_${i.id}")'>
+                        <tr class="table-danger trMesaChecked" id="trId_${i.id}" onclick='rowTablePadron("trId_${i.id}", "${i.id}")'>
                             <td class="text-center" id="checkboxId_${i.id}">
                                 <input name="checkboxMesa" class="form-check-input text-center" type="checkbox" value="${i.voto}" id="${i.id}">
                             </td>
@@ -136,84 +136,28 @@ $(function () {
 
 });
 
-
-function rowTablePadron(trId) {
-    console.log('Valor del ID Row');
-    console.log(trId);
+// 
+function rowTablePadron(trId, checkbodId) {
 
     const trMesa = document.querySelectorAll('tr');
+    const inputCheck = document.getElementById(checkbodId)
 
     const valueTr = Object.values(trMesa)
     valueTr.forEach( trElement => {
         if(trId===trElement.id){
             if(trElement.classList.value === 'table-success trMesaChecked'){
                 trElement.classList.value = 'table-danger trMesaChecked'
+                inputCheck.checked = !inputCheck.checked;
+                inputCheck.value = '0'
+                inputCheck.checked = false
             } else {
                 trElement.classList.value = 'table-success trMesaChecked'
+                inputCheck.checked = !inputCheck.checked;
+                inputCheck.value = '1'
+                inputCheck.checked = true;
             }
         }
 
     })
 
 }
-
-// const trMesaChecked = $('.trMesaChecked')
-
-    // for (let i=0; i<trMesaChecked.length; i++){
-    //     console.log('i.tr =')
-    //     console.log(i.tr)
-    // }
-    // console.log('Clck trMesaChecked')
-    // console.log(trMesaChecked)
-    //
-    // const trMesa = document.querySelectorAll('.trMesaChecked');
-    // trMesa.forEach(i => {
-    //     console.log('TextContent');
-    //     console.log(i.textContent);
-    //     console.log('TagName');
-    //     console.log(i.tagName);
-    // });
-    // console.log('Clck trMesa')
-    // console.log(trMesa)
-
-// $('#id_btnSearchProduct').on('click', function (e) {
-//         e.preventDefault();
-//         let request = $('#id_search').val();
-//         let template = '';
-//         $.ajax({
-//             url: window.location.pathname,
-//             type: 'POST',
-//             data: {
-//                 'action': 'search',
-//                 'term': request
-//             },
-//             dataType: 'json',
-//         }).done(function (data) {
-//             data.forEach(i => {
-//                 template += `
-//                     <tr>
-//                         <td class="text-center">
-//                             ${i.voto === 1 ? `
-//                                 <input name="checkboxMesa" class="form-check-input text-center" type="checkbox" checked value="${i.voto}" id="${i.id}">
-//                             ` : `
-//                                 <input name="checkboxMesa" class="form-check-input text-center" type="checkbox" value="${i.voto}" id="${i.id}">
-//                             `}
-//                         </td>
-//                         <td>${i.dni}</td>
-//                         <td>${i.apellido}</td>
-//                         <td>${i.nombre}</td>
-//                         <td>${i.domicilio}</td>
-//                         <td>${i.departamento}</td>
-//                         <td>${i.nombre_circuito}</td>
-//                         <td>${i.codigo_circuito}</td>
-//                         <td>${i.mesa}</td>
-//                     </tr>
-//             `
-//             });
-//             tableAllEvents.innerHTML = template;
-//         }).fail(function (jqXHR, textStatus, errorThrawn) {
-//             // alert(textStatus + ' - ' + errorThrawn);
-//         }).always(function (data) {
-//
-//         });
-//     });
