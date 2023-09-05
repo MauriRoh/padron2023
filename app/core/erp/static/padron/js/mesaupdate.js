@@ -7,8 +7,30 @@ let dataproces = {
 let checkVoto = [];
 let flagChecked = 0;
 
-
 $(function () {
+
+    let inputValue = $('#id_search').val().trim();
+    let botonBuscar = $('button[name="btnSearchProduct"]');
+    let botonActualizar = $('button[name="btnUpdateDNI"]');
+
+    if (inputValue === '') {
+        botonBuscar.prop('disabled', true);
+        botonActualizar.prop('disabled', true);
+    } else {
+        botonBuscar.prop('disabled', false);
+        botonActualizar.prop('disabled', false);
+    }
+
+    $('input[name="search"]').on('input', function () {
+        let inputMesa = $('#id_search').val().trim();
+        if (inputMesa.length > 0) {
+            botonBuscar.prop('disabled', false);
+        } else {
+            botonBuscar.prop('disabled', true);
+        }
+
+    });
+
     $('#id_btnSearchProduct').on('click', function (e) {
         e.preventDefault();
         let request = $('#id_search').val();
@@ -57,6 +79,12 @@ $(function () {
             });
             tableAllEvents.innerHTML = template;
 
+            let tableAllDate = document.getElementById('tableAllEvents')
+            let tableAllDateTr = tableAllDate.getElementsByTagName('tr')
+            if (tableAllDateTr.length > 0) {
+                botonActualizar.prop('disabled', false);
+            }
+            
         }).fail(function (jqXHR, textStatus, errorThrawn) {
             // alert(textStatus + ' - ' + errorThrawn);
         }).always(function (data) {
@@ -132,20 +160,22 @@ $(function () {
     $('.btnRemoveAll').on('click', function () {
         document.getElementById('id_search').value = '';
         document.getElementById('tableAllEvents').innerHTML = '';
+        botonBuscar.prop('disabled', true);
+        botonActualizar.prop('disabled', true);
     });
 
 });
 
-// 
+//
 function rowTablePadron(trId, checkbodId) {
 
     const trMesa = document.querySelectorAll('tr');
     const inputCheck = document.getElementById(checkbodId)
 
     const valueTr = Object.values(trMesa)
-    valueTr.forEach( trElement => {
-        if(trId===trElement.id){
-            if(trElement.classList.value === 'table-success trMesaChecked'){
+    valueTr.forEach(trElement => {
+        if (trId === trElement.id) {
+            if (trElement.classList.value === 'table-success trMesaChecked') {
                 trElement.classList.value = 'table-danger trMesaChecked'
                 inputCheck.checked = !inputCheck.checked;
                 inputCheck.value = '0'
