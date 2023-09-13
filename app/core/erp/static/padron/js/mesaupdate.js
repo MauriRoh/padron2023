@@ -13,6 +13,7 @@ $(function () {
     let botonBuscar = $('button[name="btnSearchProduct"]');
     let botonActualizar = $('button[name="btnUpdateDNI"]');
 
+    // Desactiva botones cuando el input está vacío
     if (inputValue === '') {
         botonBuscar.prop('disabled', true);
         botonActualizar.prop('disabled', true);
@@ -21,6 +22,7 @@ $(function () {
         botonActualizar.prop('disabled', false);
     }
 
+    // Activa botones cuando el input tiene algún valor
     $('input[name="search"]').on('input', function () {
         let inputMesa = $('#id_search').val().trim();
         if (inputMesa.length > 0) {
@@ -28,9 +30,9 @@ $(function () {
         } else {
             botonBuscar.prop('disabled', true);
         }
-
     });
 
+    // Crea la tabla al clickear el botón buscar
     $('#id_btnSearchProduct').on('click', function (e) {
         e.preventDefault();
         let request = $('#id_search').val();
@@ -79,12 +81,13 @@ $(function () {
             });
             tableAllEvents.innerHTML = template;
 
+            // Activa el botón actualizar cuadno la tabla tiene datos
             let tableAllDate = document.getElementById('tableAllEvents')
             let tableAllDateTr = tableAllDate.getElementsByTagName('tr')
             if (tableAllDateTr.length > 0) {
                 botonActualizar.prop('disabled', false);
             }
-            
+
         }).fail(function (jqXHR, textStatus, errorThrawn) {
             // alert(textStatus + ' - ' + errorThrawn);
         }).always(function (data) {
@@ -117,6 +120,7 @@ $(function () {
 
     });
 
+    // Envio de datos a la Base de Datos
     $('form').on('submit', function (e) {
         e.preventDefault();
 
@@ -166,7 +170,7 @@ $(function () {
 
 });
 
-//
+// Cambia el estado de la tabla y checkbox al clickear sobre estos
 function rowTablePadron(trId, checkbodId) {
 
     const trMesa = document.querySelectorAll('tr');

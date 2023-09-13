@@ -13,7 +13,7 @@ from core.user.forms import UserForm, UserProfileForm
 from core.user.models import User
 
 
-class UserListView(LoginRequiredMixin, ListView):
+class UserListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView):
     model = User
     template_name = 'user/list.html'
     context_object_name = 'listusers'
@@ -48,7 +48,7 @@ class UserListView(LoginRequiredMixin, ListView):
         return context
 
 
-class UserCreateView(LoginRequiredMixin, CreateView):
+class UserCreateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, CreateView):
     model = User
     form_class = UserForm
     template_name = 'user/create.html'
@@ -84,7 +84,7 @@ class UserCreateView(LoginRequiredMixin, CreateView):
         return context
 
 
-class UserUpdateView(LoginRequiredMixin, UpdateView):
+class UserUpdateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, UpdateView):
     model = User
     form_class = UserForm
     template_name = 'user/create.html'
@@ -121,7 +121,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         return context
 
 
-class UserDeleteView(LoginRequiredMixin, DeleteView):
+class UserDeleteView(LoginRequiredMixin, ValidatePermissionRequiredMixin, DeleteView):
     model = User
     template_name = 'user/delete.html'
     success_url = reverse_lazy('user:user_list')

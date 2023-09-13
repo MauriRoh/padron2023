@@ -49,7 +49,6 @@ class UserForm(ModelForm):
             ),
             'groups': forms.SelectMultiple(attrs={
                 'class': 'form-control select2',
-                # 'name': 'states[]',
                 'style': 'width: 100%',
                 'multiple': 'multiple'
                 }

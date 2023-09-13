@@ -12,13 +12,11 @@ from core.erp.models import Padron
 from core.erp.forms import PadronModelForm, PadronDNIUpdateModelForm, PadronMesaDNIUpdateModelForm
 
 
-
 # Create your views here.
-# class PadronListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView):
-class PadronListView(LoginRequiredMixin, ListView):
+class PadronListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView):
     model = Padron
     template_name = 'padron/list.html'
-    permission_required = 'view_padron'
+    permission_required = 'erp.view_padron'
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
