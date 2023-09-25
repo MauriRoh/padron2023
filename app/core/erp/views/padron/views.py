@@ -16,7 +16,7 @@ from core.erp.forms import PadronModelForm, PadronDNIUpdateModelForm, PadronMesa
 class PadronListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView):
     model = Padron
     template_name = 'padron/list.html'
-    permission_required = 'erp.view_padron'
+    permission_required = 'view_padron'
 
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
@@ -51,7 +51,7 @@ class PadronListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListVi
         return context
 
 
-class PadronUpdateView(LoginRequiredMixin, UpdateView):
+class PadronUpdateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, UpdateView):
     model = Padron
     form_class = PadronModelForm
     template_name = 'padron/update.html'
@@ -93,7 +93,7 @@ class PadronUpdateView(LoginRequiredMixin, UpdateView):
         return context
 
 
-class PadronDNIUpdateView(LoginRequiredMixin, CreateView):
+class PadronDNIUpdateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, CreateView):
     model = Padron
     form_class = PadronDNIUpdateModelForm
     template_name = 'padron/dniupdate.html'
@@ -147,7 +147,7 @@ class PadronDNIUpdateView(LoginRequiredMixin, CreateView):
         return context
 
 
-class PadronMesaDNIUpdateView(LoginRequiredMixin, CreateView):
+class PadronMesaDNIUpdateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, CreateView):
     model = Padron
     form_class = PadronMesaDNIUpdateModelForm
     template_name = 'padron/mesaupdate.html'

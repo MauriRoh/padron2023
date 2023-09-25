@@ -5,6 +5,7 @@ from django.forms import model_to_dict
 from config.settings import MEDIA_URL, STATIC_URL
 
 
+
 # Create your models here.
 class User(AbstractUser):
     image = models.ImageField(upload_to='users/%Y/%m/%d', null=True, blank=True)

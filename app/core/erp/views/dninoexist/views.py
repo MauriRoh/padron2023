@@ -14,7 +14,7 @@ from core.erp.models import DniNoExist
 from core.erp.forms import DniNoExistModelForm
 
 
-class DniNoExistListView(LoginRequiredMixin, ListView):
+class DniNoExistListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView):
     model = DniNoExist
     template_name = 'dninoexist/list.html'
     permission_required = 'view_dninoexist'
@@ -49,14 +49,14 @@ class DniNoExistListView(LoginRequiredMixin, ListView):
         return context
 
 
-class DniNoExistCreateView(LoginRequiredMixin, CreateView):
+class DniNoExistCreateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, CreateView):
     model = DniNoExist
     form_class = DniNoExistModelForm
     template_name = 'dninoexist/create.html'
     success_url = reverse_lazy('app:dninoexist_list')
     permission_required = 'add_dninoexist'
 
-    # @method_decorator(csrf_exempt)
+    @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
@@ -84,7 +84,7 @@ class DniNoExistCreateView(LoginRequiredMixin, CreateView):
         return context
 
 
-class DniNoExistUpdateView(LoginRequiredMixin, UpdateView):
+class DniNoExistUpdateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, UpdateView):
     model = DniNoExist
     form_class = DniNoExistModelForm
     template_name = 'dninoexist/create.html'
@@ -92,7 +92,7 @@ class DniNoExistUpdateView(LoginRequiredMixin, UpdateView):
     url_redirect = success_url
     permission_required = 'change_dninoexist'
 
-    # @method_decorator(csrf_exempt)
+    @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)
@@ -121,7 +121,7 @@ class DniNoExistUpdateView(LoginRequiredMixin, UpdateView):
         return context
 
 
-class DniNoExistDeleteView(LoginRequiredMixin, DeleteView):
+class DniNoExistDeleteView(LoginRequiredMixin, ValidatePermissionRequiredMixin, DeleteView):
     model = DniNoExist
     template_name = 'dninoexist/delete.html'
     success_url = reverse_lazy('app:dninoexist_list')

@@ -72,7 +72,7 @@ $(function () {
                 class: 'text-center',
                 orderable: false,
                 render: function (data, type, row) {
-                    return '<img src="' + row.image + '" class="img-fluid d-block mx-auto" style="width: 30px; height: 30px;">';
+                    return '<img src="' + row.image + '" class="img-fluid d-block mx-auto" style="width: 30px; height: 30px;" alt="">';
                 }
             },
             {

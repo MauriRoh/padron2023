@@ -5,21 +5,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="data:,">
+    <!-- Logo Web -->
+    <link rel="icon" href="{% static 'image/voto.png' %}" type="image/png/">
+    <link href="{% static 'image/voto.png' %}" rel="apple-touch-icon">
+    <!-- ./Logo Web -->
+    <!-- Title -->
     <title>{{ title }}</title>
+    <!-- ./Title -->
     <!-- Bootstrap -->
     <link href="{% static 'librery/bootstrap-5.3.0/css/bootstrap.min.css' %}" rel="stylesheet">
     <script src="{% static 'librery/bootstrap-5.3.0/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'librery/bootstrap-5.3.0/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'librery/bootstrap-5.3.0/js/popper.min.js' %}"></script>
     <!-- ./Bootstrap -->
-    <!-- AdminLTE3 -->
-    {#    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">#}
-{#    <link rel="stylesheet" href="{% static 'librery/AdminLTE-3.2.0/plugins/fontawesome-free/css/all.min.css' %}">#}
-{#    <link rel="stylesheet" href="{% static 'librery/AdminLTE-3.2.0/dist/css/adminlte.min.css' %}">#}
-{#    <script src="{% static 'librery/AdminLTE-3.2.0/plugins/jquery/jquery.min.js' %}"></script>#}
-{#    <script src="{% static 'librery/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>#}
-{#    <script src="{% static 'librery/AdminLTE-3.2.0/dist/js/adminlte.min.js' %}"></script>#}
-    <!-- ./AdminLTE3 -->
     <!-- Fontawesome -->
     {#    <script src="https://kit.fontawesome.com/606bbbad74.js" crossorigin="anonymous"></script>#}
     <link href="{% static 'librery/fontawesome-free-6.4.0/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
@@ -65,8 +63,17 @@
 </head>
 
 <!-- Body -->
+<body class="hold-transition login-page">
+<!-- /ody -->
 {% block body %}
 
 {% endblock %}
+<!-- AdminLTE3 -->
+<script src="{% static 'librery/AdminLTE-3.2.0/plugins/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'librery/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'librery/AdminLTE-3.2.0/dist/js/adminlte.min.js' %}"></script>
+<!-- ./AdminLTE3 -->
+</body>
+<!-- ./Body -->
 
 </html>

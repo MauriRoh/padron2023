@@ -81,6 +81,7 @@ class UserForm(ModelForm):
         return data
 
 
+
 class UserProfileForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -92,33 +93,28 @@ class UserProfileForm(ModelForm):
         widgets = {
             'first_name': forms.TextInput(
                 attrs={
-                    'placeholder': 'Ingrese su Nombre',
-                    'class': 'form-control',
+                    'placeholder': 'Enter your Names',
                 }
             ),
             'last_name': forms.TextInput(
                 attrs={
-                    'placeholder': 'Ingrese su Apellido',
-                    'class': 'form-control',
+                    'placeholder': 'Enter your Surname',
                 }
             ),
             'username': forms.TextInput(
                 attrs={
-                    'placeholder': 'Ingrese su Nombre de Usuario',
-                    'class': 'form-control',
+                    'placeholder': 'Enter your Username',
                 }
             ),
             'email': forms.TextInput(
                 attrs={
-                    'placeholder': 'Ingrese su Email',
-                    'class': 'form-control',
+                    'placeholder': 'Enter your Email',
                 }
             ),
             'password': forms.PasswordInput(
                 render_value=True,
                 attrs={
-                    'placeholder': 'Ingrese su Password',
-                    'class': 'form-control',
+                    'placeholder': 'Enter your Password',
                 }
             ),
         }

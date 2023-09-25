@@ -43,7 +43,7 @@ class UserListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView
         context['padron_url'] = reverse_lazy('app:padron_list')
         context['dni_no_url'] = reverse_lazy('app:dninoexist_list')
         context['padron_dni_update'] = reverse_lazy('app:padron_dniupdate')
-        context['create_url'] = reverse_lazy('user:user-create')
+        context['create_url'] = reverse_lazy('user:user_create')
         context['list_url'] = reverse_lazy('user:user_list')
         return context
 
@@ -184,7 +184,7 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
                 form = self.get_form()
                 data = form.save()
             else:
-                data['error'] = 'No se pudo realizar la solicitud'
+                data['error'] = 'No se pudo realizar lo solicitado'
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data)

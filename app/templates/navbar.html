@@ -49,7 +49,7 @@
 
             {% if request.user.groups.all %}
                 <li class="nav-item dropdown">
-                    <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    <a id="dropdownSubMenu1" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                        class="nav-link {% if request.user.groups.all.count > 1 %} dropdown-toggle {% endif %}">{{ request.session.group }}</a>
                     {% if request.user.groups.all.count > 1 %}
                         <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow"
@@ -83,7 +83,7 @@
                     </a>
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item dropdown-footer">
-                        <p>El sistema está preparado para realizar diferentes acciones</p>
+                        <p>El sistema permite ejecutar diferentes acciones</p>
                     </a>
                 </div>
             </li>
